@@ -1,0 +1,9 @@
+    printf("start lock config\n");
+    // Start allocation and configure the TCAM database
+    nseStatus = NseManagerDp_LockConfig(MyStargate);  // configure TCAM
+    if (nseStatus != Nse_OK)
+    {
+        printf("Error: fail to configure TCAM\n");
+        goto done;
+    }
+    printf("finish lock config\n");

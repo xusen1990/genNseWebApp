@@ -1,0 +1,5 @@
+void str2binary(char* str, int width);
+void binary2str(char* in, char* out, int width);
+void displayresponse(NseLookupResponse* response);
+void binary2bit(char* in, char* out, int width);
+void int2Bin(int in, char* out, int width);

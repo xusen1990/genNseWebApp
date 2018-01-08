@@ -1,0 +1,25 @@
+    // ------------------------       Add Profile ----------------------------------------------------------
+    nseStatus = NseProfile_Create(&MyProfileBuff);  // allocate memory for profile handler
+    if (nseStatus != Nse_OK)
+    {
+        printf("Error: fail to create profile\n");
+        goto done;
+    }
+    nseStatus = NseProfileTableInfo_Create(&MyTableInfo);  // allocate memory for table infomation handler; used to set which table to be search
+    if (nseStatus != Nse_OK)
+    {
+        printf("Error: fail to create tableInfo\n");
+        goto done;
+    }
+    nseStatus = NseProfileLpmTableInfo_Create(&MyLpmTableInfo);
+    if (nseStatus != Nse_OK)
+    {
+           printf("Error: fail to create lpm table info\n");
+           goto done;
+    }
+    nseStatus = NseProfileKguSegment_Create(&MyKguSegment);  // allocate memory for kgu segment handler; used to construct key
+    if (nseStatus != Nse_OK)
+    {
+        printf("Error: fail to create KGU\n");
+        goto done;
+    }

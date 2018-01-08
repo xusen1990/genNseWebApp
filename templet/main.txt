@@ -1,0 +1,32 @@
+int main(int argc, const char* argv[])
+{
+    NseError nseStatus = Nse_OK;
+    NseManagerDp* MyStargate = NULL;
+    NseTable* MyTableBuff = NULL;
+    NseTable* MyTable = NULL;
+    NseTableRecord* MyRecord = NULL;
+    NseTableRecord* MyRecordBuff = NULL;
+    NseProfile* MyProfile = NULL;
+    NseProfile* MyProfileBuff = NULL;
+    NseProfileTableInfo* MyTableInfo = NULL;
+    NseProfileKguSegment* MyKguSegment = NULL;
+    NseLookupResponse* MyResponse = NULL;
+    NseAdBlock* MyAD = NULL;
+    NseAdBlock* MyADBuff = NULL;
+    
+    NseLpmTable* MyLpmTable = NULL;
+    NseLpmTable* MyLpmTableBuff = NULL;
+    NseLpmTableRecord* MyLpmRecord = NULL;
+    NseLpmTableRecord* MyLpmRecordBuff = NULL;
+    NseProfileLpmTableInfo* MyLpmTableInfo = NULL;
+    char strBuff[1000] = "";
+    char data[1000] = "";
+    char mask[1000] = "";
+	char dataLine[1000] = "";
+    char maskLine[1000] = "";
+    char bitmask[1000] = "";
+    char search[1000] = "";
+    int i, j;
+    const char* v = NseManagerDp_GetVersion();
+    printf("STARGATE SDK Version: %s\n", v);
+	

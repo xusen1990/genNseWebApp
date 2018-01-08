@@ -1,0 +1,79 @@
+done:
+    if (MyStargate) NseManagerDp_Destroy(MyStargate);
+    if (MyTableBuff) NseTable_Destroy(MyTableBuff);
+    if (MyRecordBuff) NseTableRecord_Destroy(MyRecordBuff);
+    if (MyProfileBuff) NseProfile_Destroy(MyProfileBuff);
+    if (MyTableInfo) NseProfileTableInfo_Destroy(MyTableInfo);
+    if (MyKguSegment) NseProfileKguSegment_Destroy(MyKguSegment);
+    if (MyResponse) NseLookupResponse_Destroy(MyResponse);
+    if (MyADBuff) NseAdBlock_Destroy(MyADBuff);
+    return nseStatus;
+}
+
+void str2binary(char* str, int width)
+{
+    int i, j;
+    for (i=0; i<width/8; i++)
+    {
+        char byte = 0;
+        for (j=0; j<8; j++)
+        {
+            int idx = 8*i + j;
+            char value = (idx < width) 
+                            ? str[idx] - '0' 
+                            : 0;
+            byte = byte<<1 | value;
+        }
+        str[i] = byte;
+    }
+    str[i] = '\0';
+}
+void binary2str(char* in, char* out, int width)
+{
+    int i, j;
+    char buff[1024] = "";
+    memcpy(buff, in, width);
+    for (i=0; i<width; i++)
+    {
+        for (j=7; j>=0; j--)
+        {
+            out[8*i+j] = '0' + ((int)buff[i]&0x01);
+            buff[i] = buff[i]>>1;
+        }
+        out[width*8] = 0;
+    }
+}
+void displayresponse(NseLookupResponse* response)
+{
+    int i;
+    char strBuff[300];
+    printf("Channel\tReady\tMatch\tPriority\tAD\n");
+    for(i = 0; i < 4; i++)
+    {
+        memset(strBuff, 0, sizeof(strBuff));
+        binary2str(response->adValues[i], strBuff, 4);
+        printf("%7d\t%5d\t%5d\t%8d\t%s\n", i, response->readies[i], response->matches[i], response->priorities[i], strBuff);
+    }
+}
+
+
+void binary2bit(char* in, char* out, int width)
+{
+    int i;
+    for (i=0; i<width; i++)
+    {
+        int2Bin((int)(in[i]), &out[8*i], 8);
+    }
+    out[width*8] = 0;
+}
+
+void int2Bin(int in, char* out, int width)
+{
+    int i;
+    for (i=width-1; i>=0; --i)
+    {
+        out[i] = '0' + (in&0X01);
+        in = in>>1;
+    }
+    out[width]=0;
+} 
