@@ -107,7 +107,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			width:auto;
 			height:30px;
 			padding: 0 15px 0 15px;
-		}	
+		}
+		
+		td,th{
+			text-align: center
+		}
+		
+			
     </style>
 	
   </head>
@@ -165,13 +171,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">Profile Configure</div>
-                            <div class="panel-body">
-                                <div class="alert alert-success" role="alert">
-                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                            <div class="panel-body">                                
+                                <div class="alert alert-success alert-profile" role="alert">
+                                    <strong>Error!</strong><br> Please make a check, you have not configed profile.
                                 </div>
-                                <div class="alert alert-info" role="alert">
-                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                                </div>
+                                
+                                <table class="table table-striped table-profile" style="display:none">
+                                    <thead>
+                                        <tr>
+                                            <th>Profile ID</th>
+                                            <th>Chan 0</th>
+                                            <th>Chan 1</th>
+                                            <th>Chan 2</th>
+                                            <th>Chan 3</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                                                         
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary" style="display:none" id="detail-profile">
+									<a data-toggle="modal" href="#profile-config" style="color:#ffffff">Detail >></a>
+								</button>
                                 
                             </div>
                         </div>
@@ -180,15 +201,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="panel panel-primary">
                             <div class="panel-heading">AD Table Configure</div>
                             <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-info">Table1<span class="badge">42</span></li>
-                                </ul>
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-info">Table2<span class="badge">20</span></li>
-                                </ul>
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-info">Table3<span class="badge">10</span></li>
-                                </ul>
+                                <div class="alert alert-info alert-ad" role="alert">
+                                    <strong>Warning!</strong><br> Please make a check, do you not want to configure AD Table?
+                                </div>
+                                
+                                <table class="table table-striped table-ad" style="display:none">
+                                    <thead>
+                                        <tr>
+                                            <th>Table ID</th>
+                                            <th>name</th>
+                                            <th>baseAddr</th>
+                                            <th>size</th>
+                                            <th>width</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+	                            <button type="button" class="btn btn-primary" style="display:none" id="detail-ad">
+									<a data-toggle="modal" href="#ad-config" style="color:#ffffff">Detail >></a>
+								</button>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -198,41 +233,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="panel panel-primary">
                             <div class="panel-heading">ACL Table Configure</div>
                             <div class="panel-body">
-                                <table class="table table-striped">
+                               <div class="alert alert-info alert-acl" role="alert">
+                                    <strong>Warning!</strong><br> Please make a check, do you not want to configure ACL Table?
+                                </div>
+                                
+                                <table class="table table-striped table-acl" style="display:none">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>test</th>
-                                            <th>test</th>
-                                            <th>test</th>
-                                            <th>test</th>
+                                            <th>Table ID</th>
+                                            <th>name</th>
+                                            <th>depth</th>
+                                            <th>width</th>
+                                            <th>adBlock</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>T1</td>
-                                            <td>10</td>
-                                            <td>80000</td>
-                                            <td>test</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>T2</td>
-                                            <td>20</td>
-                                            <td>65000</td>
-                                            <td>test</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>T3</td>
-                                            <td>5</td>
-                                            <td>50000</td>
-                                            <td>test</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
-                                <button type="button" class="btn btn-primary">查看详情 >></button>
+                                <button type="button" class="btn btn-primary" style="display:none" id="detail-acl">
+									<a data-toggle="modal" href="#acl-config" style="color:#ffffff">Detail >></a>
+								</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -240,18 +262,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="panel panel-primary">
                             <div class="panel-heading">LPM Table Configure</div>
                             <div class="panel-body">
-                                <label class="label label-primary">test</label>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
+                                <div class="alert alert-info alert-lpm" role="alert">
+                                    <strong>Warning!</strong><br> Please make a check, do you not want to configure LPM Table?
                                 </div>
-                                <label class="label label-danger">test</label>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
+                                
+                                <table class="table table-striped table-lpm" style="display:none">
+                                    <thead>
+                                        <tr>
+                                            <th>Table ID</th>
+                                            <th>name</th>
+                                            <th>depth</th>
+                                            <th>width</th>
+                                            <th>type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary" style="display:none" id="detail-lpm">
+	                               <a data-toggle="modal" href="#lpm-config" style="color:#ffffff">Detail >></a>
+	                            </button>
                             </div>
                         </div>
                     </div>
@@ -958,6 +989,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			
 	  			var adJsonArr = new Array();
 	  			var adIndex = $('.ad-name').length;
+	            var $adTable = $('.table-ad').first();
+	            $adTable.find('tbody').empty();
 	  			for(var i = 0; i < adIndex; i++){
 	  				var temp = {};
 	  				temp.name = $('.ad-name').eq(i).val();
@@ -965,6 +998,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				temp.size = $('.ad-size').eq(i).val();
 	  				temp.width = $('.ad-width').eq(i).val();
 	  				adJsonArr.push(temp);
+	  				var addTr = '<tr>'
+								+'<td>'+(i+1)+'</td>'
+								+'<td>'+temp.name+'</td>'
+								+'<td>'+temp.baseAddr+'</td>'
+								+'<td>'+temp.size+'</td>'
+								+'<td>'+temp.width+'</td>';
+								+'</tr>';
+					$(addTr).appendTo($adTable.find('tbody'));
 	  			}  			
 	  			var adJsonStr = JSON.stringify(adJsonArr);
 	  			
@@ -978,7 +1019,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				success:function(data) {
 		                 if(data.success) {
 		                    console.log("success");
-		                 } else {
+							$('.alert-ad').attr("style","display:none");
+	                        $('.table-ad').attr("style","display:table");
+							$('#detail-ad').attr("style","display:block");
+	                     } else {
 		                     alert(data.msg);//打印相应的错误信息
 		                 }
 		             },
@@ -1012,6 +1056,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			
 	  			var aclJsonArr = new Array();
 	  			var aclIndex = $('.acl-name').length;
+	            var $aclTable = $('.table-acl').first();
+	            $aclTable.find('tbody').empty();
 	  			for(var i = 0; i < aclIndex; i++){
 	  				var temp = {};
 	  				temp.name = $('.acl-name').eq(i).val();
@@ -1019,6 +1065,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				temp.width = $('.acl-width').eq(i).val();
 	  				temp.adBlock = $('.acl-adBlock').eq(i).val();
 	  				aclJsonArr.push(temp);
+					var addTr = '<tr>'
+								+'<td>'+(i+1)+'</td>'
+								+'<td>'+temp.name+'</td>'
+								+'<td>'+temp.depth+'</td>'
+								+'<td>'+temp.width+'</td>'
+								+'<td>'+temp.adBlock+'</td>';
+								+'</tr>';
+					$(addTr).appendTo($aclTable.find('tbody'));
 	  			}  			
 	  			var aclJsonStr = JSON.stringify(aclJsonArr);
 	  			
@@ -1032,6 +1086,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				success:function(data) {
 		                 if(data.success) {
 		                    console.log("success");
+							$('.alert-acl').attr("style","display:none");
+							$('.table-acl').attr("style","display:table");
+							$('#detail-acl').attr("style","display:block");
 		                 } else {
 		                     alert(data.msg);//打印相应的错误信息
 		                 }
@@ -1061,6 +1118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				//alert("Finish config Table");
   				var lpmJsonArr = new Array();
 	  			var lpmIndex = $('.lpm-name').length;
+				var $lpmTable = $('.table-lpm').first();
+				$lpmTable.find('tbody').empty();
 	  			for(var i = 0; i < lpmIndex; i++){
 	  				var temp = {};
 	  				temp.name = $('.lpm-name').eq(i).val();
@@ -1068,6 +1127,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				temp.width = $('.lpm-width').eq(i).val();
 	  				temp.type = $('.lpm-type').eq(i).val();
 	  				lpmJsonArr.push(temp);
+					var addTr = '<tr>'
+					+'<td>'+(i+1)+'</td>'
+					+'<td>'+temp.name+'</td>'
+					+'<td>'+temp.depth+'</td>'
+					+'<td>'+temp.width+'</td>'
+					+'<td>'+temp.type+'</td>'
+					+'</tr>';
+					$(addTr).appendTo($lpmTable.find('tbody'));
 	  			}  			
 	  			var lpmJsonStr = JSON.stringify(lpmJsonArr);
 	  			
@@ -1081,6 +1148,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				success:function(data) {
 		                 if(data.success) {
 		                    console.log("success");
+							$('.alert-lpm').attr("style","display:none");
+							$('.table-lpm').attr("style","display:table");
+							$('#detail-lpm').attr("style","display:block");
 		                 } else {
 		                     alert(data.msg);//打印相应的错误信息
 		                 }
@@ -1130,12 +1200,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$("#profile-submit").click(function(){
 	  			var profileJsonArr = new Array();
 	  			var profileIndex = $('.profile-tb-num').length;
+				var $profileTable = $('.table-profile').first();
+				$profileTable.find('tbody').empty();
+
+				var channelNum = 4;
+
 	  			for(var i = 0; i < profileIndex-1; i++){
 	  				var tmpProfile = {};
 	  				var profileCfgJsonArr = new Array();
 	  				var profileCfgs = $('.profile-tb-num').eq(i).parents('.profile-config-body').find('.add-config-profile-table');
 	  				var profileCfgIndex = profileCfgs.length;
-	  				//console.log("pfc"+profileCfgIndex);
+
+					//Initialize profile table array by channel statistics
+					var profTbArr = new Array();
+					for(var k=0; k < channelNum; k++){
+						profTbArr[k] = new Array();
+					}
+
 	  				for(var j = 0; j < profileCfgIndex; j++){
 	  					var temPfofileCfg = {};
 	  					temPfofileCfg.type =  profileCfgs.eq(j).find('.pf-type').eq(0).val();
@@ -1143,7 +1224,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  					temPfofileCfg.channel =  profileCfgs.eq(j).find('.pf-channel').eq(0).val();
 	  					temPfofileCfg.kgu =  profileCfgs.eq(j).find('.pf-kgu').eq(0).val();
 	  					profileCfgJsonArr.push(temPfofileCfg);
-	  				}
+
+	  					var index = temPfofileCfg.channel;
+						profTbArr[index].push(temPfofileCfg.table);
+
+
+					}
+					var addTr = '<tr>'
+					+'<td>'+(i+1)+'</td>'
+					for(var m = 0; m < channelNum; m++){
+						addTr += '<td>';
+						for(var n = 0; n < profTbArr[m].length;n++){
+							if(n == profTbArr[m].length-1){
+								addTr += profTbArr[m][n];
+							}else{
+								addTr += profTbArr[m][n]+',';
+							}
+						}
+						addTr += '</td>';
+					}
+					addTr +='</tr>';
+					$(addTr).appendTo($profileTable.find('tbody'));
+
+
 	  				tmpProfile.tbnum = $('.profile-tb-num').eq(i).val();
 	  				tmpProfile.config = profileCfgJsonArr;
 	  				profileJsonArr.push(tmpProfile);  				
@@ -1161,6 +1264,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				success:function(data) {
 		                 if(data.success) {
 		                    console.log("success");
+							$('.alert-profile').attr("style","display:none");
+							$('.table-profile').attr("style","display:table");
+							$('#detail-profile').attr("style","display:block");
 		                 } else {
 		                     alert(data.msg);//打印相应的错误信息
 		                 }
