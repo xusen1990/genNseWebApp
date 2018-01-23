@@ -37,8 +37,9 @@ public class UsersDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Users> uList = new ArrayList<Users>(); // 用户集合
+		DBHelper dbHelper = new DBHelper();
 		try {
-			conn = DBHelper.getConnection();
+			conn = dbHelper.getConnection();
 			String sql = "SELECT * FROM users;"; // sql语句
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();

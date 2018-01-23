@@ -12,7 +12,7 @@ public class DBHelper {
 	private static final String username = "root";  //数据库的用户名
 	private static final String password = "root";  //数据库的密码
 	
-	private static Connection conn = null;
+	private  Connection conn = null;
 	//静态代码块，负责加载驱动
 	static
 	{
@@ -27,7 +27,7 @@ public class DBHelper {
 	}
 	
 	//单例模式返回数据库的连接对象	
-	public static Connection getConnection() throws SQLException
+	public Connection getConnection() throws SQLException
 	{
 		if(conn == null)
 		{
