@@ -122,9 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	 <%
   		if(session.getAttribute("loginUser") == null){
   			response.sendRedirect("index.jsp");  		
-  		}
-  		
-  		ArrayList<Ad> AdList = new ArrayList<Ad>(); 		
+  		}		
   		 	  	
   	 %>
   
@@ -157,7 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a data-toggle="modal" href="#add-rules">Add Rules&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-edit" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#search-key">Search Key&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#gen-app">Gen-Application&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-send" style="color:#337ab7;"></span></a></li>
-                    <li><a data-toggle="modal" href="#history">History&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon glyphicon-list-alt" style="color:#337ab7;"></span></a></li>
+                    <li><a href="history.jsp" target="_blank">History&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon glyphicon-list-alt" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#help">Help&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign" style="color:#337ab7;"></span></a></li>
                     
                 </ul>
@@ -290,10 +288,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         
-       <hr class="divider"> 
-       <footer>        
-        <p class="pull-right">Copyright &copy; 2017 <strong>Corigine</strong> </p>
-       </footer>
+		<nav class="navbar  navbar-fixed-bottom" role="navigation">
+	    <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	       <hr class="divider"> 
+	       <footer>        
+	        <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
+	       </footer>
+	
+	    </div>
+	    <!-- /.container-fluid -->
+	    </nav>
        
        
        
@@ -388,6 +393,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                </div>
 	                <div class="modal-body">
 	                	If you have any question, please contact with <a href="mailto:xusen.li@corigine.com?subject=QA: Auto-gen System">Xusen</a>.	                
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    
+	                </div>
+	            </div><!-- /.modal-content -->
+	        </div><!-- /.modal -->
+	    </div> 
+	    
+	    
+	    
+	    <!-- history -->
+	     <div class="modal fade " id="history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	        <div class="modal-dialog ">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title"><strong>History</strong></h4>
+	                </div>
+	                <div class="modal-body">
+	                	<table class="table table-striped">
+                           <thead>
+                               <tr>
+                                   <th>Gen-App Name</th>
+                                   <th>Rule </th>
+                                   <th>Search Key</th>                                   
+                               </tr>
+                               <tr>
+                               	 <td>aaa</td>
+                               	 <td>abb</td>
+                               	 <td>acc</td>
+                               </tr>
+                               <tr>
+                               	 <td>aaa</td>
+                               	 <td>abb</td>
+                               	 <td>acc</td>
+                               </tr>
+                           </thead>
+                           <tbody>
+
+                           </tbody>
+                       </table>                
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    

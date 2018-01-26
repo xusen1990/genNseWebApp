@@ -24,23 +24,54 @@ public class AppDAO {
 		DBHelper dbHelper = new DBHelper();
 		Connection conn = dbHelper.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT id, appName,ruleName,searchKeyName FROM genApp_history"
-											+" WHERE userName=" +"\'"+userName+"\'"
-											+"AND (createdate between "
-											+"\'"+beginDate+"\'"
-											+"and"
-											+"\'"+endDate+"\')"
-				
-										);
+		ResultSet rs = null;
+		boolean beginDateStatus = (beginDate == null) || (beginDate.equals("")); 
+		boolean endDateStatus = (endDate == null) || (endDate.equals("")); 
+		
+		if(!beginDateStatus && !endDateStatus){
+			 rs = stmt.executeQuery("SELECT id, appName,ruleName,searchKeyName,createDate FROM genApp_history"
+						+" WHERE userName=" +"\'"+userName+"\'"
+						+"AND (createdate between "
+						+"\'"+beginDate+"\'"
+						+"and"
+						+"\'"+endDate+"\')"
+
+					);			
+			
+		}else if(!beginDateStatus && endDateStatus){
+			 rs = stmt.executeQuery("SELECT id, appName,ruleName,searchKeyName,createDate FROM genApp_history"
+						+" WHERE userName=" +"\'"+userName+"\'"
+						+"AND createdate > "
+						+"\'"+beginDate+"\')"
+				  );		
+		}else if(beginDateStatus && !endDateStatus){
+			 rs = stmt.executeQuery("SELECT id, appName,ruleName,searchKeyName,createDate FROM genApp_history"
+						+" WHERE userName=" +"\'"+userName+"\'"
+						+"AND createdate < "
+						+"\'"+endDate+"\')"
+				  );				
+		}else if(beginDateStatus && endDateStatus){
+			 rs = stmt.executeQuery("SELECT id, appName,ruleName,searchKeyName,createDate FROM genApp_history"
+						+" WHERE userName=" +"\'"+userName+"\'"						
+				  );				
+		}		
+		
+		
+
 		ArrayList<App> appList = new ArrayList<App>(); // app list
 		App app = null;
+		int index = 1;
 		while(rs.next()){
 			app = new App();
 			app.setId(rs.getInt("id"));
 			app.setAppName(rs.getString("appName"));
 			app.setRuleName(rs.getString("ruleName"));
 			app.setSearchKeyName(rs.getString("searchKeyName"));
+			app.setCreateDate(rs.getString("createDate"));
+			app.setIndex(index);
+			app.setUserName(userName);
 			appList.add(app);
+			index++;
 		}
 		
 		if (rs != null) {
@@ -74,8 +105,7 @@ public class AppDAO {
 		ptmt.setString(3, app.getRuleName());
 		ptmt.setString(4, app.getSearchKeyName());
 		
-		ptmt.execute();	
-		
+		ptmt.execute();			
 	
         if (ptmt != null) {
         	ptmt.close();   
@@ -83,9 +113,7 @@ public class AppDAO {
         
         if (conn != null) {
             conn.close();   
-        }		
-		
-		
+        }				
 	}
 	
 	
@@ -115,12 +143,12 @@ public class AppDAO {
 		List<App> appList = appDAO.query("test4","2017-01-01 00:00:00","2018-12-01 00:00:00");
 		for(App app: appList){
 					
-			System.out.println(app.getAppName()+","+app.getRuleName());
+			System.out.println(app.getAppName()+","+app.getRuleName()+","+app.getCreateDate());
 		}
 		
 		
 		App app1 = new App();
-		app1.setUserName("test5");
+		app1.setUserName("admin");
 		app1.setAppName("nseApp_test");
 		app1.setRuleName("rule_test");
 		app1.setSearchKeyName("searchkey_test");
@@ -130,6 +158,7 @@ public class AppDAO {
 		
 		AppDAO appDao = new AppDAO();
 		appDao.delApp(13);
+		
 		
 	}
 	

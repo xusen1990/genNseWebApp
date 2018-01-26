@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dao.AppDAO;
 import com.dao.GenAppDAO;
 import com.po.Acl;
 import com.po.Ad;
+import com.po.App;
 import com.po.Lpm;
 import com.po.Mode;
 import com.po.Profile;
@@ -67,8 +70,10 @@ public class GenAppServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		LocalDate localDate = LocalDate.now();    	
+		LocalTime localTime = LocalTime.now();
     	
-    	
+		
+		
 		Mode mode = new Mode();    	
     	List<Ad> adList = new ArrayList<Ad>();     	
     	List<Acl> aclList = new ArrayList<Acl>();     	
@@ -81,6 +86,8 @@ public class GenAppServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		
+
+		
 		try{
 			mode = (Mode)session.getAttribute("mode");
 			adList = (List<Ad>) session.getAttribute("adList");
@@ -89,7 +96,8 @@ public class GenAppServlet extends HttpServlet {
 			profList = (List<Profile>) session.getAttribute("profList");
 			username = (String) session.getAttribute("loginUser");
 				
-			genFileName = "nseApp_"+username+"_"+localDate.toString();
+			genFileName = "nseApp_"+username+"_"+localDate.toString()+"_"+localTime.toString().replace(".", "-").replace(":", "-");
+			//genFileName = "nseApp_"+username+"_"+localDate.toString();
 			
 			
 			//²âÊÔ¶ÁÐ´ÎÄ¼þ
@@ -125,6 +133,17 @@ public class GenAppServlet extends HttpServlet {
 	    	
 	    	//add end main
 	    	GenAppDAO.addEndMain(genFileName,url);
+	    	
+	    	
+	    	
+	    	//write to database
+			App app = new App();
+			app.setUserName(username);
+			app.setAppName(genFileName);
+			app.setRuleName("rule_test");
+			app.setSearchKeyName("searchkey_test");
+			AppDAO appDAO = new AppDAO();
+			appDAO.addAppHistory(app);
 	    	
 	    	PrintWriter out = response.getWriter();
 			out.println("{\"success\":true,"+"\"filename\":"+"\""+genFileName+"\"}");
