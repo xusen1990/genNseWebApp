@@ -147,11 +147,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            queryParams: queryParams,
 	            sidePagination: 'client', //服务端分页
 	            pageNumber: 1, //初始化加载第一页，默认第一页
-	            pageSize: 8, //每页的记录行数（*）
+	            pageSize: 6, //每页的记录行数（*）
 	            pageList: [5, 10, 15,20, 25],
 	            //strictSearch: true,
 	            clickToSelect: true,                //是否启用点击选中行
-	            height: 464,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+	            height: 398,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 	            contentType: "application/x-www-form-urlencoded",
 	            search: true,
 	            showColumns: true,  //显示隐藏列

@@ -452,7 +452,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                    <h4 class="modal-title"><strong>Generate Application</strong></h4>
 	                </div>
-	                <div class="modal-body">
+	                <div class="modal-body gen-app-modal-body">
 	                	<div style="text-align:center" class="loading-pg">
 	                	   <img  src="pg/loading.gif"  > 
 	                	</div>	                	
@@ -1362,7 +1362,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		
 	  		
 	  		$('#gen-app').on('shown.bs.modal', function (e) {
-	  			
+	  			$('.gen-app-modal-body').empty();
+	  			$('<div style="text-align:center" class="loading-pg">'
+	  				+'<img  src="pg/loading.gif">'
+	  				+'</div>').appendTo($('.gen-app-modal-body'));
 			    $.ajax({
 	  				type:"post",
 	  				url:"servlet/GenAppServlet",
