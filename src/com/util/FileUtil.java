@@ -10,8 +10,8 @@ public class FileUtil {
 	
 	//private static String path = "D:\\Java\\Workspaces\\MyEclipse 2017 CI\\genNseWebApp\\NseApplication\\";
 	//private static String path2 = "D:\\Java\\Workspaces\\MyEclipse 2017 CI\\genNseWebApp\\templet\\";
-	private static String path = "NseApplication\\";
-	private static String path2 = "templet\\";
+	private static String path = "NseApplication"+System.getProperty("file.separator");
+	private static String path2 = "templet"+System.getProperty("file.separator");
 	private static String fileNameTemp = "";
 	
 	
