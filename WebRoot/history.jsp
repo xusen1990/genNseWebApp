@@ -217,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         function deleteRec(value){
-        	alert(value);      
+        	//alert(value);      
         	//$("input[name='newsletter']").attr("checked", true);
         	 
         	$.ajax({
