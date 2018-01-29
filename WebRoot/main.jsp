@@ -285,20 +285,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
+                <nav class="navbar  navbar-bottom" role="navigation">
+				    <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				       <hr class="divider"> 
+				       <footer>        
+				        <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
+				       </footer>
+				
+				    </div>
+				    <!-- /.container-fluid -->
+				</nav>
+                
+                
             </div>
         </div>
         
-		<nav class="navbar  navbar-bottom" role="navigation">
-	    <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	       <hr class="divider"> 
-	       <footer>        
-	        <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
-	       </footer>
-	
-	    </div>
-	    <!-- /.container-fluid -->
-	    </nav>
+
        
        
        
