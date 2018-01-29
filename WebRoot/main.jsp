@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'main.jsp' starting page</title>
+    <title>dashboard</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -288,7 +288,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         
-		<nav class="navbar  navbar-fixed-bottom" role="navigation">
+		<nav class="navbar  navbar-bottom" role="navigation">
 	    <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	       <hr class="divider"> 
@@ -402,49 +402,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div> 
 	    
 	    
-	    
-	    <!-- history -->
-	     <div class="modal fade " id="history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	        <div class="modal-dialog ">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                    <h4 class="modal-title"><strong>History</strong></h4>
-	                </div>
-	                <div class="modal-body">
-	                	<table class="table table-striped">
-                           <thead>
-                               <tr>
-                                   <th>Gen-App Name</th>
-                                   <th>Rule </th>
-                                   <th>Search Key</th>                                   
-                               </tr>
-                               <tr>
-                               	 <td>aaa</td>
-                               	 <td>abb</td>
-                               	 <td>acc</td>
-                               </tr>
-                               <tr>
-                               	 <td>aaa</td>
-                               	 <td>abb</td>
-                               	 <td>acc</td>
-                               </tr>
-                           </thead>
-                           <tbody>
-
-                           </tbody>
-                       </table>                
-	                </div>
-	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    
-	                </div>
-	            </div><!-- /.modal-content -->
-	        </div><!-- /.modal -->
-	    </div> 
+	    	    
 	    
 	    
-	    
-	    <!-- gen-app -->
+	   <!-- genApp -->
 	     <div class="modal fade " id="gen-app" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
 	            <div class="modal-content">
