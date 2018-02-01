@@ -20,7 +20,8 @@ my $type      = 0;       #type rule/search
 my $dest      = "";      #gen txt
 my $source    = "";       #need txt
 my $path      ="C:\\Users\\peng.zhang\\Downloads\\apache-tomcat-8.0.48\\webapps\\genNseWebApp\\templet\\";        #path
-my $head       = "";
+my $spath     = "";     #source path
+my $head      = "";
 my $delete    = 0 ;
 
 
@@ -37,7 +38,8 @@ use constant USAGE => <<'HERE';
     -dest            dest      generate the file we need
     -source          source    the data we need
     -type            0/1       rule/search
-    -path            path      path
+    -path            path      dest path
+	-spath   		 spath	   source path
     -delete          0/1       save/delete
     -----------------------------------------------------------------------------
     # EXAMPLES
@@ -54,6 +56,7 @@ GetOptions(
     "dest=s"          => \$dest,
     "source=s"     => \$source,
     "path=s"     => \$path,
+	"spath=s"     => \$spath,
     "delete=i"     => \$delete,
 );
 die USAGE if $help;
@@ -66,6 +69,10 @@ my @sourcefile;
 my $destfile;
 @sourcefile = split(/,/, $source);
 $destfile = $dest.".txt";
+if($spath eq "")
+{
+	$spath = $path;
+}
 my $start = time;
 open(DEST,">$path$destfile") or die "can't open file: $destfile\n"; #write
 if($type == 0)
@@ -74,7 +81,7 @@ if($type == 0)
     {
         $head = ($_).".txt";
         print DEST "#".$head."\n";
-        open(FP , "<$path$head")or die "can't open file: $head\n"; #write
+        open(FP , "<$spath$head")or die "can't open file: $head\n"; #write
         while(<FP>){
 
             print DEST $_;
@@ -101,7 +108,7 @@ else
     {
         $head = ($_).".txt";
 
-        open(FP,"<$path$head")or die "can't open file: $head\n"; #write
+        open(FP,"<$spath$head")or die "can't open file: $head\n"; #write
         $num = 0;
 
 

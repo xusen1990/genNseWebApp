@@ -2,7 +2,6 @@ package com.dao;
 
 import java.util.List;
 
-import com.po.Lpm;
 import com.po.Profile;
 
 import net.sf.json.JSONArray;

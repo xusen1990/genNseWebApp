@@ -539,8 +539,7 @@ public class GenAppDAO {
     				System.out.println(cmd);
     			 }catch (Exception ex) {  
     	              System.out.print("error");}
-    		 }
-    			  
+    		}			  
     		else if(i_type.equals("Fixed"))
     		{
     			FileUtil.createFile(name,url);
@@ -773,7 +772,6 @@ public class GenAppDAO {
 	     				    + checkStatus("Error: fail to create acl record\\n",0)
 	    					+ "\twhile(fgets(data_buff, 3000, fp) != NULL)"+ "\r\n"
 	    					+ "\t{"+ "\r\n"
-	    					
 						    + "\t\tMyRecordBuff->format = NSE_TABLERECORD_FORMAT_DATA_MASK;" +"\r\n"
 						    + "\t\tMyRecordBuff->width =" + width+";" +"\r\n"  					
 	    					+ "\t\tdata_temp = strtok(data_buff,\",\");"+ "\r\n"
@@ -837,7 +835,6 @@ public class GenAppDAO {
 	    			
 	    		for(int i = 0; i < lpmList.size(); i++)
 	    		{
-	    			System.out.println("111");
 	    			name =lpmList.get(i).getName();
 	    			profileID = gettbnum(name,profList);
 	    			if(profileID == -1)
@@ -899,11 +896,12 @@ public class GenAppDAO {
         	String fileNameTemp1 ="";
         	Process process;
     		int flag = 0;
- 	
-    		System.out.println( keyList.size());
+
+    		System.out.println(keyList.size());
     		
         	for(int i = 0; i < keyList.size(); i++)
         	{
+
         		
     			int profileid = Integer.parseInt( keyList.get(i).getProfileId());
         		String[] table = new String[4];
@@ -913,10 +911,9 @@ public class GenAppDAO {
         		if(keyList.get(i).getType().equals("Auto"))
         	  {		
         			String head =genFileName+"_profile"+profileid+"searchkey";
-        			if(flag == 0)
-        			{
-        			source1 += head;
-        			flag++;
+        			if(flag == 0){
+        				source1 += head;
+        				flag++;
         			}
         			else{
         				source1 += ","+ head ;
@@ -934,30 +931,24 @@ public class GenAppDAO {
         			{
         				if(table[t] != null)
         				{	
-        				fileNameTemp1 =  genFileName +"_"+table[t];
-        			
-        			    if(t == 0)
-        			    { 	
-        				
-        				source0 += fileNameTemp1 ;
-        			
-        			    }
-        			    else
-        			    {
-        			    	source0 +=","+fileNameTemp1;
-        			    }
+        					fileNameTemp1 =  genFileName +"_"+table[t];
+        					if(t == 0)
+        					{ 	
+        						source0 += fileNameTemp1 ;     			
+        					}
+        					else
+        					{
+        						source0 +=","+fileNameTemp1;
+        					}
         				}
 
     				}
     				
-    				
-    				try {  	  
-        				process = Runtime.getRuntime().exec("perl "+url+"templet"+System.getProperty("file.separator")+"gen.pl -type 1 -source "+source0+" -path "+path1+" -dest "+head);
-        				
-        				
+    				try {  	
+        				process = Runtime.getRuntime().exec("perl "+url+"templet"+System.getProperty("file.separator")+"gen.pl -type 1 -source "+source0+" -path "+path1+" -dest "+head+" -spath "+ path2);
         				if( process.waitFor() == 0)
         				{	
-        					System.out.println("success perl "+url+"templet"+System.getProperty("file.separator")+"gen.pl -type 1 -source "+source0+" -path "+path1+" -dest "+head);
+        					System.out.println("success perl "+url+"templet"+System.getProperty("file.separator")+"gen.pl -type 1 -source "+source0+" -path "+path1+" -dest "+head+" -spath "+ path2);
     		  				continue ;
         				}
         			} catch (Exception ex) {  
@@ -987,7 +978,8 @@ public class GenAppDAO {
 				} 
 				
 			}
-        	try {  	  
+        	try {  
+    
 				process = Runtime.getRuntime().exec("perl "+url+"templet"+System.getProperty("file.separator")+"gen.pl -type 0 -source "+source1+" -path "+path1+" -delete 1 -dest "+fileNameTemp);
 				
 				
