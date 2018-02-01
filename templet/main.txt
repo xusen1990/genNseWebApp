@@ -22,11 +22,19 @@ int main(int argc, const char* argv[])
     char strBuff[1000] = "";
     char data[1000] = "";
     char mask[1000] = "";
-	char dataLine[1000] = "";
+    char dataLine[1000] = "";
     char maskLine[1000] = "";
     char bitmask[1000] = "";
     char search[1000] = "";
+    char data_buff[3000] ="";
     int i, j;
+    char* pri = "";
+    char* data_temp;
+    char* mask_temp;
+    FILE* fp;
+    char* file = "";
+    int num = 0 ;
+    int prio = 0;
     const char* v = NseManagerDp_GetVersion();
     printf("STARGATE SDK Version: %s\n", v);
 	

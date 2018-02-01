@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          </div>
 
         <table id="table"></table>
-	 	<nav class="navbar  navbar-fixed-bottom" role="navigation">
+	 	<nav class="navbar  navbar-bottom" role="navigation">
 	    <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	       <hr class="divider"> 
@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	            columns:[
 	            {field:'index',title:'Index',align:'center'},
-	            {
+	            	{
 	            	field:'appName',
 	            	title:'App Name',
 	            	align:'center',
@@ -173,8 +173,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                return content;	            	
 	            	}
 	            },
-	            {field:'ruleName',title:'Rule Name',align:'center'},
-	            {field:'searchKeyName',title:'Search-key Name',align:'center'},
+	           
+	            	{
+	            	field:'ruleName',
+	            	title:'Rule Name',
+	            	align:'center',
+	            	formatter:function(value,row,index){
+	            		var fileName = value;
+		                var filePath = "templet/"+fileName+".txt";
+		                var content = "<a href=\"" + filePath +"\" " + "download=\"" + fileName + ".txt\">" + fileName +"</a>";
+		                return content;	
+		                }            	
+	            	
+	            },
+	           
+	             {
+	            	field:'searchKeyName',
+	            	title:'Search-key Name',
+	            	align:'center',
+	            	formatter:function(value,row,index){
+	            		var fileName = value;
+		                var filePath = "templet/"+fileName+".txt";
+		                var content = "<a href=\"" + filePath +"\" " + "download=\"" + fileName + ".txt\">" + fileName +"</a>";
+		                return content;	            	
+	            	}
+	            },
+	            
 	            {field:'createDate',title:'Create Date',align:'center'},
 	            //{field:'id',title:'ID',align:'center',visible:false}
 	            {

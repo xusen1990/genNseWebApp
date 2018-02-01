@@ -37,6 +37,14 @@
     <servlet-class>com.servlet.GenAppServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>KeyServlet</servlet-name>
+    <servlet-class>com.servlet.KeyServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RuleServlet</servlet-name>
+    <servlet-class>com.servlet.RuleServlet</servlet-class>
+  </servlet>
+<servlet>
     <servlet-name>HistoryServlet</servlet-name>    
     <servlet-class>com.servlet.HistoryServlet</servlet-class>
   </servlet>
@@ -44,6 +52,7 @@
     <servlet-name>DelHistoryRecServlet</servlet-name>
     <servlet-class>com.servlet.DelHistoryRecServlet</servlet-class>
   </servlet>
+
 
 
 
@@ -77,6 +86,14 @@
     <url-pattern>/servlet/GenAppServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>KeyServlet</servlet-name>
+    <url-pattern>/servlet/KeyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RuleServlet</servlet-name>
+    <url-pattern>/servlet/RuleServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
     <servlet-name>HistoryServlet</servlet-name>
     <url-pattern>/servlet/HistoryServlet</url-pattern>
   </servlet-mapping>

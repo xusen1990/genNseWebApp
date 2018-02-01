@@ -77,3 +77,85 @@ void int2Bin(int in, char* out, int width)
     }
     out[width]=0;
 } 
+
+int str2int(char* in)
+{
+	int length = strlen(in);
+	int n = 0;
+	for (int i = 0; i < length-1; i++)
+	{
+		n = n * 10 + in[i] - '0';
+	}
+	return n;
+}
+
+void swapl(char search[])
+{
+	char tmp[8];
+	for (int i = 0; i < 18 / 2; i++) {
+		for (int j = 0; j < 8; j++) {
+			tmp[j] = search[i * 8 + j];
+			search[i * 8 + j] = search[(18 - 1 - i) * 8 + j];
+			search[(18 - 1 - i) * 8 + j] = tmp[j];
+		}
+	}
+}
+
+void filetofile(char* file)
+{
+	FILE * fp = fopen(file, "r");
+	FILE * fd = NULL;
+	printf(file);
+	char buf[1024];
+	char a = '#';
+	int len = 0;
+	char file1[1000] = "";
+	if (fp != NULL)
+	{
+		while (fgets(buf, sizeof(buf), fp) != NULL)
+		{
+			if (buf[0] == a)
+			{
+
+				if (fd != NULL)
+				{
+					fclose(fd);
+					printf("%d", strlen(buf));
+					len = strlen(buf);
+					strncpy(file1, buf + 1, len - 2);
+
+					printf(file1);
+					fd = fopen(file1, "w");
+				}
+				else
+				{
+					int len = strlen(buf);
+					strncpy(file1, buf + 1, len - 2);
+					printf(file1);
+					fd = fopen(file1, "w");
+				}
+
+			}
+			else
+			{
+				if (fd != NULL)
+				{
+					fputs(buf, fd);
+				}
+				else
+				{
+					printf("lll");
+				}
+			}
+
+		}
+		if (fd != NULL)
+		{
+			fclose(fd);
+		}
+
+		fclose(fp);
+
+	}
+	return;
+}

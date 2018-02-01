@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>dashboard</title>
+    <title>My JSP 'main.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -113,6 +113,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			text-align: center
 		}
 		
+		.gen td{
+			width: 180px;
+			word-wrap:break-word;
+			word-break:break-all;
+			white-space: pre-wrap;
+		}
 			
     </style>
 	
@@ -122,7 +128,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	 <%
   		if(session.getAttribute("loginUser") == null){
   			response.sendRedirect("index.jsp");  		
-  		}		
+  		}
+  		
+  		ArrayList<Ad> AdList = new ArrayList<Ad>(); 		
   		 	  	
   	 %>
   
@@ -285,23 +293,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
-                <nav class="navbar  navbar-bottom" role="navigation">
-				    <div class="container-fluid">
-				    <!-- Brand and toggle get grouped for better mobile display -->
-				       <hr class="divider"> 
-				       <footer>        
-				        <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
-				       </footer>
-				
-				    </div>
-				    <!-- /.container-fluid -->
-				</nav>
-                
-                
             </div>
         </div>
         
-
+       <hr class="divider"> 
+       <footer>        
+        <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
+       </footer>
        
        
        
@@ -405,10 +403,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div> 
 	    
 	    
-	    	    
 	    
-	    
-	   <!-- genApp -->
+	    <!-- gen-app -->
 	     <div class="modal fade " id="gen-app" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
 	            <div class="modal-content">
@@ -416,13 +412,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                    <h4 class="modal-title"><strong>Generate Application</strong></h4>
 	                </div>
-	                <div class="modal-body gen-app-modal-body">
+	                <div class="modal-body">
 	                	<div style="text-align:center" class="loading-pg">
 	                	   <img  src="pg/loading.gif"  > 
 	                	</div>	                	
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" data-dismiss="modal">close</button>	                    
+	                    <button type="button" class="btn btn-primary gen-app" data-dismiss="modal">close</button>	                    
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
@@ -753,7 +749,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      	<strong>Table:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
-							      	<input type="text" class="form-control">							      	
+							      	<input type="text" class="form-control rule-table">							      	
 							      </div>							      
 							    </div>	
 						  	
@@ -772,9 +768,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									<div class="radio-inline">
 									    <label>
-									        <input type="radio" class="add-random-rule" name="type" value="" />RND&nbsp;&nbsp;&nbsp;&nbsp;
+									        <input type="radio" class="add-random-Lpmrule" name="type" value="" />LPM-RND&nbsp;&nbsp;&nbsp;&nbsp;
 									    </label>
 									</div>
+									
+									<div class="radio-inline">
+                                                <label>
+                                                    <input type="radio" class="add-random-aclrule" name="type" value="" />ACL-RND&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </label>
+                                    </div>
 									
 									<div class="radio-inline">
 									    <label>
@@ -785,16 +787,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    </div>	
 							    
 							    <div class="row file-upload" style="display:none">
-							    	<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2">
-							    		<input type="file" class="file"  data-show-preview="false" />
-							    	</div>
+							    	<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
+                                            <strong>Address:</strong>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
+                                            <input type="text" class="form-control rule-fixed">
+                                        </div>
 							    </div>						   
 							    <div class="row file-form" style="display:none">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
 							      	<strong>Form:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
-							      	<input type="text" class="form-control" placeholder="s1,s1,s3,s3">							      	
+							      	<input type="text" class="form-control rule-config" placeholder="s1,s1,s3,s3">							      	
 							      </div>	
 							      <div class="col-lg-2 col-md-2">
 							      	<a class="glyphicon glyphicon-flag"  data-toggle="modal" href="#hint"
@@ -807,7 +812,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" data-dismiss="modal">submit</button>	                    
+	                    <button type="button" class="btn btn-primary" id ="rule-submit" data-dismiss="modal">submit</button>	                    
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
@@ -864,24 +869,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      	<strong>Profile ID:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6">
-							      	<input type="text" class="form-control">
+							      	<input type="text" class="form-control search-profile-id">
 							      </div>							      
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
-							      	<strong>Width:</strong>
+							      	<strong>Type:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6">
-							      	<input type="text" class="form-control">
+							      	<div class="radio-inline">
+                                                <label>
+                                                    <input type="radio" class="Auto-search" name="type" value="" checked/>Auto&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </label>
+                                            </div>
+
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <input type="radio" class="From-file-search" name="type" value="" />From File&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </label>
+                                            </div>
 							      </div>							      
-							    </div>							   
+							    </div>
+							    
+							    <div class="row file-fixed" style="display:none">
+                                        <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
+                                            <strong>Address:</strong>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
+                                            <input type="text" class="form-control search-fixed">
+                                        </div>
+                                    </div>							   
 						    </form>
 						  </div>
 						</div>                   	
 	                	               
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" data-dismiss="modal">submit</button>	                    
+	                    <button type="button" class="btn btn-primary" id ="search-submit" data-dismiss="modal">submit</button>	                    
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
@@ -1298,11 +1322,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		});
 	  		
 	  		
-	  		$(".add-random-rule").click(function(){
+	  		$(".add-random-aclrule").click(function(){
 	  			$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none"); 
 	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:block");  		
 	  		});
 	  		
+	  		$(".add-random-Lpmrule").click(function(){
+                    $(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none");
+                    $(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");
+                });
+                
 			$(".add-rule-from-file").click(function(){
 				$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:block"); 
 	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");  			
@@ -1316,20 +1345,142 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			$(".add-inc-rule").last().trigger('click');
 	  		});
 	  		
+	  		var inc = false;
+            var rndlpm = false;
+            var rndacl = false;
+            var fromfile = false;
+            $("#rule-submit").click(function(){
+                var ruleJsonArr = new Array();
+                var ruleIndex = $('.rule-panel').length;
+                for(var i = 0; i < ruleIndex; i++){
+                    var temp = {};
+                    temp.name = $('.rule-table').eq(i).val();
+                    inc = $(".add-inc-rule").get(i).checked;
+                    rndlpm = $(".add-random-Lpmrule").get(i).checked;
+                    rndacl = $(".add-random-aclrule").get(i).checked;
+                    fromfile = $(".add-rule-from-file").get(i).checked;
+                    if(inc)
+                    {
+                        temp.type = "INC";
+                        temp.config = null;
+                    }
+                    else if(rndacl)
+                    {
+                        temp.type="Random";
+                        temp.config = $(".rule-config").eq(i).val();
+
+                    }
+                    else if(rndlpm)
+                    {
+                        temp.type="Random";
+                        temp.config = null;
+                    }
+                    else if(fromfile)
+                    {
+                        temp.type="Fixed";
+                        temp.config = $("rule-fixed").eq(i).val();
+
+                    }
+                    ruleJsonArr.push(temp);
+                }
+                var ruleJsonStr = JSON.stringify(ruleJsonArr);
+                console.log(ruleJsonStr);
+                //console.log(ruleJsonStr);
+                $.ajax({
+                    type:"post",
+                    url:"servlet/RuleServlet",
+                    data:{
+                        ruleJsonStr : ruleJsonStr
+                    },
+                    dataType:"json",
+                    success:function(data) {
+                        if(data.success) {
+                        	console.log(data);
+                            console.log("success");
+                        } else {
+                            alert(data.msg);//打印相应的错误信息
+                        }
+                    },
+                    error:function(msg) {
+                        console.log("error");
+                    }
+
+                });
+
+
+            });
+            
+	  		$(".Auto-search").click(function(){
+                $(this).parents('.row').nextAll().filter('.file-fixed').attr("style","display:none");
+            });
+            $(".From-file-search").click(function(){
+                $(this).parents('.row').nextAll().filter('.file-fixed').attr("style","display:block");
+            });
+	  		
 	  		var search_key_num = 1;
 	  		$(".search-key-add").click(function(){
 	  			$(".search-key-panel").first().clone(true).appendTo(".search-key-conf-body");
 	  			$(".search-key-panel").last().find('h4').find('span').first().html("Key"+(++search_key_num));	  		
 	  		});	
 	  		
+	  		var auto = false;
+            var from_file = false;
+            $("#search-submit").click(function(){
+                var keyJsonArr = new Array();
+                var keyIndex = $('.search-key-panel').length;
+                for(var i = 0; i < keyIndex; i++){
+                    var temp = {};
+                    temp.profileId = $('.search-profile-id').eq(i).val();
+                    auto = $(".Auto-search").get(i).checked;
+                    from_file = $(".From-file-search").get(i).checked;
+                    if(auto)
+                    {
+                        temp.type = "Auto";
+                        temp.config = null;
+                    }
+                    else if(from_file)
+                    {
+                        temp.type="Fixed";
+                        temp.config = $(".search-fixed").eq(i).val();
+
+                    }
+                    keyJsonArr.push(temp);
+                }
+                var keyJsonStr = JSON.stringify(keyJsonArr);
+                console.log(keyJsonStr);
+                //console.log(keyJsonStr);
+                $.ajax({
+                    type:"post",
+                    url:"servlet/KeyServlet",
+                    data:{
+                        keyJsonStr : keyJsonStr
+                    },
+                    dataType:"json",
+                    success:function(data) {
+                        if(data.success) {
+                        	console.log(data);
+                            console.log("success");
+                        } else {
+                            alert(data.msg);//打印相应的错误信息
+                        }
+                    },
+                    error:function(msg) {
+                        console.log("error");
+                    }
+
+                });
+
+
+            });
+	  		$('.gen-app').click(function(){
+	  		 var $node = $('.gen').parent('.modal-body');
+		                    $node.empty();
+		                    $('<div style="text-align:center" class="loading-pg"><img  src="pg/loading.gif"> </div>').appendTo($node); })
 	  		
 	  		
 	  		
 	  		$('#gen-app').on('shown.bs.modal', function (e) {
-	  			$('.gen-app-modal-body').empty();
-	  			$('<div style="text-align:center" class="loading-pg">'
-	  				+'<img  src="pg/loading.gif">'
-	  				+'</div>').appendTo($('.gen-app-modal-body'));
+	  			
 			    $.ajax({
 	  				type:"post",
 	  				url:"servlet/GenAppServlet",
@@ -1340,12 +1491,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				success:function(data) {
 		                 if(data.success) {
 		                    console.log("success");
+		                    console.log(data);
 		                    var $node = $('.loading-pg').parent('.modal-body');
 		                    $node.empty();
 		                    var fileName = data.filename;
+		                    var rulename = data.rulename;
+							console.log(rulename);
+							
+							var keyname = data.keyname;
+							console.log(keyname);
+							
 		                    var filePath = "NseApplication/"+fileName+".c";
-		                    var content = "<a href=\"" + filePath +"\" " + "download=\"" + fileName + ".c\">" + fileName +"</a>";
-		                    $('<span>Please click '+content +' to download.<span>').appendTo($node);		                    
+		                    var app = "<a href=\"" + filePath +"\" " + "download=\"" + fileName + ".c\">" + fileName +"</a>";
+		                    var filePath = "RuleCollections/"+rulename+".txt";
+                            var rule  =  "<a href=\"" + filePath +"\" " + "download=\"" + rulename + ".txt\">" + rulename +"</a>";
+                            var filePath = "KeyCollections/"+keyname+".txt";
+                            var key =  "<a href=\"" + filePath +"\" " + "download=\"" + keyname + ".txt\">" + keyname +"</a>";
+                            //console.log(content);
+		                    $('<table  align="center" class = "gen " border="1">' +'please click the file to download <tr> <th>app</th> <th>rule</th><th>key</th></tr>'+
+    							'<tr><td>'+app+'</td><td>'+rule+'</td><td>'+key+'</td></tr></table>').appendTo($node);		                    
 		                    
 		                 } else {
 		                     alert(data.msg);//打印相应的错误信息

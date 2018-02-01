@@ -3,3 +3,6 @@ void binary2str(char* in, char* out, int width);
 void displayresponse(NseLookupResponse* response);
 void binary2bit(char* in, char* out, int width);
 void int2Bin(int in, char* out, int width);
+int str2int(char* in);
+void swapl(char search[]);
+void filetofile(char* file);
