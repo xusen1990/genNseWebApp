@@ -890,7 +890,7 @@ public class GenAppDAO {
         	
         	String path1 = url + "KeyCollections"+System.getProperty("file.separator");
         	String path2 = url + "RuleCollections"+System.getProperty("file.separator");
-        	String search ="searchkey";
+        	String search ="key";
         	String fileNameTemp = genFileName+"_"+search ;  	
         	String source1 ="";
         	String fileNameTemp1 ="";
@@ -997,7 +997,7 @@ public class GenAppDAO {
 	    public static void addsearch(String genFileName,Mode mode,List<Ad> adList, List<Acl> aclList, List<Lpm> lpmList, List<Profile> profList,List<Key> keyList, String url)
         {
         	String content ="\r\n"
-    				+ "\tfile = \""+genFileName+"_"+"searchkey.txt\";"+"\r\n"
+    				+ "\tfile = \""+genFileName+"_"+"key.txt\";"+"\r\n"
     				+ "\tfiletofile(file);"+"\r\n";
         	FileUtil.appendContent(genFileName, content,url); 
         	

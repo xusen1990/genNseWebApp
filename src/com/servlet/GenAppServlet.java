@@ -174,10 +174,10 @@ public class GenAppServlet extends HttpServlet {
 	    	GenAppDAO.addEndMain(genFileName,url);
 	    	
 	    	PrintWriter out = response.getWriter();
-	    	String keyname = genFileName+"_searchkey";
+	    	String keyname = genFileName+"_key";
 	    	//System.out.println("{\"success\":true,"+"\"filename\":"+"\""+genFileName+"\","+"\"keyname\":"+"\""+keyname+"\""+"}");
 	    	//out.println("{\"success\":true,"+"\"filename\":"+"\""+genFileName+"\","+"\"keyname\":"+"\""+keyname+"\""+"}");
-	    	String rulename = genFileName+"_rule";;
+	    	String rulename = genFileName+"_rule";
 	    	System.out.println("{\"success\":true,"+"\"filename\":"+"\""+genFileName+"\","+"\"rulename\":"+"\""+rulename+"\","+"\"keyname\":"+"\""+keyname+"\""+"}");
 	    	
 			
