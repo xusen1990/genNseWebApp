@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand " href="main.jsp" ">Auto-gen System</a>          
+                <a class="navbar-brand " href="main.jsp" ">Auto-gen System</a>
             </div>
             
             
@@ -614,10 +614,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
 							      	<strong>type:</strong>
 							      </div>
-							      <div class="col-lg-6 col-md-6">
-							      	<input type="text" class="form-control lpm-type">
-							      </div>							      
-							    </div>
+	                              <div class="col-lg-6 col-md-6">
+										<div class="input-group" id="lpmtype-select">
+											<input type="text" class="form-control lpm-type" id="lpm-type" name="lpm-type">
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-default dropdown-toggle btn-drop" data-toggle="dropdown" tabindex="-1">
+													<span class="caret"></span>
+													<span class="sr-only">切换下拉菜单</span>
+												</button>
+												<ul class="dropdown-menu pull-right" >
+													<li><a href="#">eNseLpmTableType_IP4</a></li>
+													<li><a href="#">eNseLpmTableType_IP6</a></li>
+													<li><a href="#">eNseLpmTableType_VRF_IP4</a></li>
+													<li><a href="#">eNseLpmTableType_VRF_IP6</a></li>
+												</ul>
+											</div><!-- /btn-group -->
+										</div><!-- /input-group -->
+	                               </div><!-- /col -->
+								</div>
 						    </form>
 						  </div>
 						</div>
@@ -956,11 +970,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			//alert($(this).find('a').html());
 	  			$(this).parent().parent().prevAll().filter('input').val($(this).find('a').html());
 	  			event.preventDefault();
-	  		}); 
-	  		
-	  		
-	  		
-	  		var en_ad = false;
+	  		});
+
+			$("#lpmtype-select ul>li").click(function(event){
+				//alert($(this).find('a').html());
+			$(this).parent().parent().prevAll().filter('input').val($(this).find('a').html());
+				event.preventDefault();
+			});
+
+	        var en_ad = false;
 	  		var en_acl = false;
 	  		var en_lpm = false;
 	  		$("#mode-next").click(function(){
