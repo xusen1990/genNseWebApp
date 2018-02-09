@@ -164,7 +164,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a data-toggle="modal" href="#search-key">Search Key&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-search" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#gen-app">Gen-Application&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-send" style="color:#337ab7;"></span></a></li>
                     <li><a href="history.jsp" target="_blank">History&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon glyphicon-list-alt" style="color:#337ab7;"></span></a></li>
-                    <li><a data-toggle="modal" href="#help">Help&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign" style="color:#337ab7;"></span></a></li>
+                    <li><a data-toggle="modal" href="#help">Help&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope" style="color:#337ab7;"></span></a></li>
+                    <li><a data-toggle="modal" href="#QR">QR&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign" style="color:#337ab7;"></span></a></li>
                     
                 </ul>
             </div>
@@ -205,10 +206,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="col-md-6">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">AD Table Configure</div>
+                            <div class="panel-heading">AD Configure</div>
                             <div class="panel-body">
                                 <div class="alert alert-info alert-ad" role="alert">
-                                    <strong>Warning!</strong><br> Please make a check, do you not want to configure AD Table?
+                                    <strong>Warning!</strong><br> Please make a check, do you not want to configure AD?
                                 </div>
                                 
                                 <table class="table table-striped table-ad" style="display:none">
@@ -402,6 +403,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </div><!-- /.modal -->
 	    </div> 
 	    
+	    <!-- QR -->
+	     <div class="modal fade " id="QR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	        <div class="modal-dialog ">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title"><strong>QR</strong></h4>
+	                </div>
+	                <div class="modal-body">
+	                	if you want to how use the web , you can see the <a href="pdf/web/viewer.html" target="_blank">user guide</a> or <a href="pdf/web/qr.html" target="_blank">quick reference</a>.	                
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    
+	                </div>
+	            </div><!-- /.modal-content -->
+	        </div><!-- /.modal -->
+	    </div> 
 	    
 	    
 	    <!-- gen-app -->
@@ -438,7 +456,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                	
 						<div class="panel panel-default ad-table-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>AD Table1</span><span type="button" class="glyphicon glyphicon-plus ad-table-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>AD 1</span><span type="button" class="glyphicon glyphicon-plus ad-table-add" style="float:right"></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -1000,7 +1018,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		var ad_table_num = 1;
 	  		$(".ad-table-add").click(function(){
 	  			$(".ad-table-panel").first().clone(true).appendTo(".ad-table-conf-body");
-	  			$(".ad-table-panel").last().find('h4').find('span').first().html("AD Table"+(++ad_table_num));	  		
+	  			$(".ad-table-panel").last().find('h4').find('span').first().html("AD "+(++ad_table_num));	  		
 	  		});
 	  		
 	  		
@@ -1378,7 +1396,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     else if(fromfile)
                     {
                         temp.type="Fixed";
-                        temp.config = $("rule-fixed").eq(i).val();
+                        temp.config = $(".rule-fixed").eq(i).val();
 
                     }
                     ruleJsonArr.push(temp);
