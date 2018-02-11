@@ -153,11 +153,11 @@ public class GenAppServlet extends HttpServlet {
 	    	long start0 = System.currentTimeMillis();
 	    	System.out.println("parse rule pathtime1:"+(start0-start));
 	    	//add rule
-	    	GenAppDAO.genrule(genFileName, aclList, lpmList, url);
+	    	GenAppDAO.genrule(genFileName, aclList, lpmList,ruleList, url);
 	    	long start1 = System.currentTimeMillis();
 	    	System.out.println("gen rule pathtime1:"+(start1-start0));
 	    	
-	    	GenAppDAO.addrule(genFileName,mode,adList,aclList,lpmList,profList,url,ADflag);
+	    	GenAppDAO.addrule(genFileName,mode,adList,aclList,lpmList,profList,ruleList,url,ADflag);
 	    	long start2 = System.currentTimeMillis();
 	    	System.out.println("add rule pathtime2:"+(start2-start1));
 	    	

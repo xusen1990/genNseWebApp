@@ -66,7 +66,6 @@ public class RuleServlet extends HttpServlet {
 		
 		try{
 			ruleJsonStr = request.getParameter("ruleJsonStr");
-			System.out.println("211");
 			//System.out.println(adJsonStr);
 			RuleDAO.parseJsonRule(ruleJsonStr, ruleList);
 			for(int i = 0; i < ruleList.size(); i++){
