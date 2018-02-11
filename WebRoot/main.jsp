@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+
     <title>My JSP 'main.jsp' starting page</title>
-    
+
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="expires" content="0">
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<!--
@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 	<link rel="stylesheet" type="text/css" href="css/build.css">
 	<link rel="stylesheet" type="text/css" href="css/fileinput.css">
-	
+
 	<style>
         body {
             padding-top: 50px;
@@ -55,75 +55,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .nav-sidebar > .active > a:focus {
             color: #fff;
             background-color: #428bca;
-        }        
-        
-        .logo{  
-		    width: 200px;  
-		    height: 50px;  
-		    max-width: 100%;  
-		    max-height: 100%;     
-		} 
-		
+        }
+
+        .logo{
+		    width: 200px;
+		    height: 50px;
+		    max-width: 100%;
+		    max-height: 100%;
+		}
+
 		.brand{
 			float:none;
 			margin-left: -15px;
 			height: 50px;
 		    padding: 15px 15px;
 		    font-size: 18px;
-		    line-height: 20px;			
-		} 
+		    line-height: 20px;
+		}
 		.user-name{
 			color:#FFFFFF;
 			float:none;
-			height: 50px;			
+			height: 50px;
 			font-size: 16px;
-			line-height: 20px;				
+			line-height: 20px;
 		}
 		.btn-drop{
 			padding: 14px 14px;
 		}
-		
+
 		.title-text{
-			padding: 10px 15px 10px 15px;		
+			padding: 10px 15px 10px 15px;
 		}
 		.title-text2{
-			padding: 20px 15px 10px 15px;		
+			padding: 20px 15px 10px 15px;
 		}
-		
+
 		.ad-table-conf-body,.acl-table-conf-body,.lpm-table-conf-body,.add-rules-conf-body,.search-key-conf-body{
 			width:100%;
 			height:280px;
 			overflow:auto;
-		}	
-		
+		}
+
 		.profile-conf-body{
 			width:100%;
 			height:330px;
-			overflow:auto;		
+			overflow:auto;
 		}
-		
-		
+
+
 		.profile-config-head{
 			width:auto;
 			height:30px;
 			padding: 0 15px 0 15px;
 		}
-		
+
 		td,th{
 			text-align: center
 		}
-		
+
 		.gen td{
 			width: 180px;
 			word-wrap:break-word;
 			word-break:break-all;
 			white-space: pre-wrap;
 		}
-			
+
     </style>
-	
+
   </head>
-  
+
   <body>
   	 <%
   		if(session.getAttribute("loginUser") == null){
@@ -133,23 +133,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		ArrayList<Ad> AdList = new ArrayList<Ad>(); 		
   		 	  	
   	 %>
-  
-  
-  
-  
+
+
+
+
      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand " href="main.jsp" ">Auto-gen System</a>
             </div>
-            
-            
+
+
             <form class="navbar-form navbar-right" role="search"  action="index.jsp" method="post">
             	<span class="glyphicon glyphicon-user" style="color:#FFFFFF;"></span>
-            	<span class="user-name" id="user-name"><%=session.getAttribute("loginUser") %></span>&nbsp;&nbsp;&nbsp;&nbsp;            	
-            	<button type="submit" class="btn btn-info" id="logout"><span class="glyphicon glyphicon-off" style="color:#FFFFFF;"></span></button>            	
-            </form>          
+            	<span class="user-name" id="user-name"><%=session.getAttribute("loginUser") %></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            	<button type="submit" class="btn btn-info" id="logout"><span class="glyphicon glyphicon-off" style="color:#FFFFFF;"></span></button>
+            </form>
         </div>
         <!-- /.container-fluid -->
     </nav>
@@ -166,23 +166,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a href="history.jsp" target="_blank">History&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon glyphicon-list-alt" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#help">Help&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope" style="color:#337ab7;"></span></a></li>
                     <li><a data-toggle="modal" href="#QR">QR&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign" style="color:#337ab7;"></span></a></li>
-                    
+
                 </ul>
             </div>
             <div class="col-md-10 col-md-offset-2">
                 <div class="page-header">
                     <h1>Dashboard</h1>
                 </div>
-         
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">Profile Configure</div>
-                            <div class="panel-body">                                
+                            <div class="panel-body">
                                 <div class="alert alert-success alert-profile" role="alert">
                                     <strong>Error!</strong><br> Please make a check, you have not configed profile.
                                 </div>
-                                
+
                                 <table class="table table-striped table-profile" style="display:none">
                                     <thead>
                                         <tr>
@@ -194,13 +194,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                                                         
+
                                     </tbody>
                                 </table>
                                 <button type="button" class="btn btn-primary" style="display:none" id="detail-profile">
 									<a data-toggle="modal" href="#profile-config" style="color:#ffffff">Detail >></a>
 								</button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -211,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="alert alert-info alert-ad" role="alert">
                                     <strong>Warning!</strong><br> Please make a check, do you not want to configure AD?
                                 </div>
-                                
+
                                 <table class="table table-striped table-ad" style="display:none">
                                     <thead>
                                         <tr>
@@ -229,8 +229,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <button type="button" class="btn btn-primary" style="display:none" id="detail-ad">
 									<a data-toggle="modal" href="#ad-config" style="color:#ffffff">Detail >></a>
 								</button>
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                <div class="alert alert-info alert-acl" role="alert">
                                     <strong>Warning!</strong><br> Please make a check, do you not want to configure ACL Table?
                                 </div>
-                                
+
                                 <table class="table table-striped table-acl" style="display:none">
                                     <thead>
                                         <tr>
@@ -261,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <button type="button" class="btn btn-primary" style="display:none" id="detail-acl">
 									<a data-toggle="modal" href="#acl-config" style="color:#ffffff">Detail >></a>
 								</button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="alert alert-info alert-lpm" role="alert">
                                     <strong>Warning!</strong><br> Please make a check, do you not want to configure LPM Table?
                                 </div>
-                                
+
                                 <table class="table table-striped table-lpm" style="display:none">
                                     <thead>
                                         <tr>
@@ -296,17 +296,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
-        
-       <hr class="divider"> 
-       <footer>        
+
+       <hr class="divider">
+       <footer>
         <p class="pull-right">Copyright &copy; 2017-2018 <strong>Corigine</strong> </p>
        </footer>
-       
-       
-       
-      
-       <!-- 模态框（Modal） -->       
-       
+
+
+
+
+       <!-- 模态框（Modal） -->
+
        <!-- Tb configure -->
 	    <div class="modal fade " id="mode-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -316,17 +316,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title" >Configure Mode</h4>
 	                </div>
 	                <div class="modal-body">
-	                	<form role="form">		     
+	                	<form role="form">
 	                		<div class="row">
-	                			<div class="col-lg-1 col-md-1">	          
+	                			<div class="col-lg-1 col-md-1">
 	                			</div>
 	                			<div class="col-lg-2 col-md-2 title-text">
 	                				<strong>Mode:</strong>
-	                			</div>  
-	                			<div class="col-lg-8 col-md-8">         	
-									<div class="input-group" id="mode-select">								
+	                			</div>
+	                			<div class="col-lg-8 col-md-8">
+									<div class="input-group" id="mode-select">
 										<input type="text" class="form-control" id="nseMode" name="nseMode">
-										<div class="input-group-btn">					
+										<div class="input-group-btn">
 											<button type="button" class="btn btn-default dropdown-toggle btn-drop" data-toggle="dropdown" tabindex="-1">
 												<span class="caret"></span>
 												<span class="sr-only">切换下拉菜单</span>
@@ -334,12 +334,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<ul class="dropdown-menu pull-right" >
 												<li><a href="#">NSE_MODE_SINGLE_PORT</a></li>
 												<li><a href="#">NSE_MODE_DUAL_PORT_SINGLE_BANK</a></li>
-												<li><a href="#">NSE_MODE_DUAL_PORT_DUAL_BANK</a></li>												
+												<li><a href="#">NSE_MODE_DUAL_PORT_DUAL_BANK</a></li>
 											</ul>
 										</div><!-- /btn-group -->
-									</div><!-- /input-group -->	
-								</div><!-- /col -->	
-							</div><!-- /input-row -->	
+									</div><!-- /input-group -->
+								</div><!-- /col -->
+							</div><!-- /input-row -->
 							<div class="row">
 								<div class="col-lg-1 col-md-1"></div>
 								<div class="col-lg-6 col-md-6 title-text">
@@ -348,8 +348,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        	<label for="checkbox-ad">
 			                            	enable AD
 			                        	</label>
-			                    	</div>	
-			                    </div>						
+			                    	</div>
+			                    </div>
 							</div>
 							<div class="row">
 								<div class="col-lg-1 col-md-1"></div>
@@ -359,8 +359,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        	<label for="checkbox-acl">
 			                            	enable ACL
 			                        	</label>
-			                    	</div>	
-			                    </div>						
+			                    	</div>
+			                    </div>
 							</div>
 							<div class="row">
 								<div class="col-lg-1 col-md-1"></div>
@@ -370,21 +370,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        	<label for="checkbox-lpm">
 			                            	enable LPM
 			                        	</label>
-			                    	</div>	
-			                    </div>						
+			                    	</div>
+			                    </div>
 							</div>
-												
+
 						</form>
-	                
+
 	                </div>
-	                <div class="modal-footer">	                    
+	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-primary" id="mode-next" data-toggle="modal">next step</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
+	    </div>
+
+
 	    <!-- help -->
 	     <div class="modal fade " id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -394,15 +394,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Help</strong></h4>
 	                </div>
 	                <div class="modal-body">
-	                	If you have any question, please contact with <a href="mailto:xusen.li@corigine.com?subject=QA: Auto-gen System">Xusen</a>.	                
+	                	If you have any question, please contact with <a href="mailto:xusen.li@corigine.com?subject=QA: Auto-gen System">Xusen</a>.
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
+	    </div>
+
 	    <!-- QR -->
 	     <div class="modal fade " id="QR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -412,16 +412,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>QR</strong></h4>
 	                </div>
 	                <div class="modal-body">
-	                	if you want to how use the web , you can see the <a href="pdf/web/viewer.html" target="_blank">user guide</a> or <a href="pdf/web/qr.html" target="_blank">quick reference</a>.	                
+	                	if you want to how use the web , you can see the <a href="pdf/web/viewer.html" target="_blank">user guide</a> or <a href="pdf/web/qr.html" target="_blank">quick reference</a>.
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>	                    
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
+	    </div>
+
+
 	    <!-- gen-app -->
 	     <div class="modal fade " id="gen-app" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -432,18 +432,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                </div>
 	                <div class="modal-body">
 	                	<div style="text-align:center" class="loading-pg">
-	                	   <img  src="pg/loading.gif"  > 
-	                	</div>	                	
+	                	   <img  src="pg/loading.gif"  >
+	                	</div>
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary gen-app" data-dismiss="modal">close</button>	                    
+	                    <button type="button" class="btn btn-primary gen-app" data-dismiss="modal">close</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-	    
+	    </div>
+
+
+
 	     <!-- AD -->
 	     <div class="modal fade " id="ad-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -453,7 +453,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Configure AD</strong></h4>
 	                </div>
 	                <div class="modal-body ad-table-conf-body" >
-	                	
+
 						<div class="panel panel-default ad-table-panel">
 						  <div class="panel-heading">
 						    <h4 class="panel-title"><span>AD 1</span><span type="button" class="glyphicon glyphicon-plus ad-table-add" style="float:right"></span></h4>
@@ -466,7 +466,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control ad-name" >
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -474,7 +474,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control ad-baseAddr">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -482,7 +482,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control ad-size">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -490,21 +490,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control ad-width">
-							      </div>							      
+							      </div>
 							    </div>
 						    </form>
 						  </div>
-						</div>             	
-	                	            
+						</div>
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id="ad-next" data-toggle="modal">next step</button>	                    
+						<button type="button" class="btn btn-primary" id="ad-last" data-toggle="modal">last step</button>
+	                    <button type="button" class="btn btn-primary" id="ad-next" data-toggle="modal">next step</button>
 	                </div>
+
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
+	    </div>
+
+
 	    <!-- ACL -->
 	     <div class="modal fade " id="acl-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -514,7 +516,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Configure ACL</strong></h4>
 	                </div>
 	                <div class="modal-body acl-table-conf-body">
-	                	
+
 	                	<div class="panel panel-default acl-table-panel">
 						  <div class="panel-heading">
 						    <h4 class="panel-title"><span>ACL Table1</span><span type="button" class="glyphicon glyphicon-plus acl-table-add" style="float:right"></span></h4>
@@ -527,7 +529,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control acl-name">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -535,7 +537,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control acl-depth">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -543,7 +545,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control acl-width">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -551,25 +553,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control acl-adBlock">
-							      </div>							      
+							      </div>
 							    </div>
 						    </form>
 						  </div>
 						</div>
-	                	
-	                	
-	                	
+
+
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id="acl-next" data-toggle="modal">next step</button>	                    
+						<button type="button" class="btn btn-primary" id="acl-last" data-toggle="modal">last step</button>
+	                    <button type="button" class="btn btn-primary" id="acl-next" data-toggle="modal">next step</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-	    
-	    
+	    </div>
+
+
+
+
 	    <!-- LPM -->
 	     <div class="modal fade " id="lpm-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -579,7 +582,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Configure LPM</strong></h4>
 	                </div>
 	                <div class="modal-body lpm-table-conf-body">
-	                
+
 	                	<div class="panel panel-default lpm-table-panel">
 						  <div class="panel-heading">
 						    <h4 class="panel-title"><span>LPM Table1</span><span type="button" class="glyphicon glyphicon-plus lpm-table-add" style="float:right"></span></h4>
@@ -592,7 +595,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control lpm-name">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -600,7 +603,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control lpm-depth">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -608,7 +611,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control lpm-width">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -635,18 +638,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    </form>
 						  </div>
 						</div>
-	                		                
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id="lpm-next" data-toggle="modal">Submit</button>	                    
+						<button type="button" class="btn btn-primary" id="lpm-last" data-toggle="modal">last step</button>
+	                    <button type="button" class="btn btn-primary" id="lpm-next" data-toggle="modal">Submit</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-	    
-	    
+	    </div>
+
+
+
+
 	    <!-- profile-config -->
 	     <div class="modal fade " id="profile-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -656,8 +660,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Configure Profile</strong></h4>
 	                </div>
 	                <div class="modal-body profile-conf-body">
-	                
-	                	
+
+
 	                	<div class="panel panel-default profile-panel">
 						  <div class="panel-heading">
 						    <h4 class="panel-title"><span>Profile1</span><span type="button" class="glyphicon glyphicon-plus profile-add" style="float:right"></span></h4>
@@ -670,24 +674,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control profile-tb-num">
-							      </div>	
-							      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">							      
+							      </div>
+							      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">
 							      	<span type="button" class="glyphicon glyphicon-chevron-down detail-profile-add" style="float:center; padding:10px 0 0 0"></span>
 							      </div>
 							     </div>
-							</form>							
-						  </div>						  
-						</div>     
-	                		                
+							</form>
+						  </div>
+						</div>
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id="profile-submit" data-dismiss="modal">submit</button>	                    
+	                    <button type="button" class="btn btn-primary" id="profile-submit" data-dismiss="modal">submit</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
+	    </div>
+
+
 	    <div class="add-config-profile" style="display:none">
 	    	<div class="panel panel-default profile-panel">
 			  <div class="panel-heading">
@@ -701,17 +705,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				      </div>
 				      <div class="col-lg-6 col-md-6">
 				      	<input type="text" class="form-control profile-tb-num">
-				      </div>	
-				      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">							      
+				      </div>
+				      <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">
 				      	<span type="button" class="glyphicon glyphicon-chevron-down detail-profile-add" style="float:center; padding:10px 0 0 0;"></span>
 				      </div>
 				     </div>
-				</form>							
-			  </div>						  
-			</div>   
+				</form>
+			  </div>
+			</div>
 	    </div>
-	    
-	    
+
+
 	    <div class="add-config-profile-table" style="display:none">
 	    	<br>
 	    	<div class="panel-heading profile-config-head">
@@ -726,7 +730,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </div>
 					  <div class="col-lg-6 col-md-6">
 						<input type="text" class="form-control pf-type">
-					  </div>							      
+					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -734,7 +738,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </div>
 					  <div class="col-lg-6 col-md-6">
 						<input type="text" class="form-control pf-table">
-					  </div>							      
+					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -742,7 +746,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </div>
 					  <div class="col-lg-6 col-md-6">
 						<input type="text" class="form-control pf-channel">
-					  </div>							      
+					  </div>
 					</div>
 					<div class="row">
 					  <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -750,17 +754,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </div>
 					  <div class="col-lg-6 col-md-6">
 						<input type="text" class="form-control pf-kgu">
-					  </div>							      
+					  </div>
 					</div>
 				</form>
-			</div>	    
+			</div>
 	    </div>
-	    
-	    
-	    
-	    
-	    
-	    
+
+
+
+
+
+
 	    <!-- add-rules -->
 	     <div class="modal fade " id="add-rules" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -781,43 +785,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      	<strong>Table:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
-							      	<input type="text" class="form-control rule-table">							      	
-							      </div>							      
-							    </div>	
-						  	
-						  	
+							      	<input type="text" class="form-control rule-table">
+							      </div>
+							    </div>
+
+
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
 							      	<strong>Type:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
-							      	
+
 							      	<div class="radio-inline">
 									    <label>
 									        <input type="radio" class="add-inc-rule" name="type" value="" checked/>INC&nbsp;&nbsp;&nbsp;&nbsp;
 									    </label>
 									</div>
-									
+
 									<div class="radio-inline">
 									    <label>
 									        <input type="radio" class="add-random-Lpmrule" name="type" value="" />LPM-RND&nbsp;&nbsp;&nbsp;&nbsp;
 									    </label>
 									</div>
-									
+
 									<div class="radio-inline">
                                                 <label>
                                                     <input type="radio" class="add-random-aclrule" name="type" value="" />ACL-RND&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                     </div>
-									
+
 									<div class="radio-inline">
 									    <label>
 									        <input type="radio" class="add-rule-from-file" name="type" value="" />From File
 									    </label>
-									</div>	
-							      </div>							      
-							    </div>	
-							    
+									</div>
+							      </div>
+							    </div>
+
 							    <div class="row file-upload" style="display:none">
 							    	<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
                                             <strong>Address:</strong>
@@ -825,36 +829,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
                                             <input type="text" class="form-control rule-fixed">
                                         </div>
-							    </div>						   
+							    </div>
 							    <div class="row file-form" style="display:none">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
 							      	<strong>Form:</strong>
 							      </div>
 							      <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
-							      	<input type="text" class="form-control rule-config" placeholder="s1,s1,s3,s3">							      	
-							      </div>	
+							      	<input type="text" class="form-control rule-config" placeholder="s1,s1,s3,s3">
+							      </div>
 							      <div class="col-lg-2 col-md-2">
 							      	<a class="glyphicon glyphicon-flag"  data-toggle="modal" href="#hint"
-							      		style="color:#337ab7; padding:20px 0 0 0;"></a>							      		
-							      </div>						      
-							    </div>						    							    						    
+							      		style="color:#337ab7; padding:20px 0 0 0;"></a>
+							      </div>
+							    </div>
 						    </form>
 						  </div>
 						</div>
-	                
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id ="rule-submit" data-dismiss="modal">submit</button>	                    
+	                    <button type="button" class="btn btn-primary" id ="rule-submit" data-dismiss="modal">submit</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-	    
-	    
-	    
-	    
+	    </div>
+
+
+
+
+
+
 	     <!-- hint -->
 	     <div class="modal fade " id="hint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog modal-sm">
@@ -871,15 +875,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h6>s4 delegates port number, 2 bytes taken</h6>
 						<h6>s5 delegates protocol number, 1 byte taken</h6>
 	                </div>
-	               
+
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-	    
-	    
-	    
+	    </div>
+
+
+
+
+
 	     <!-- search key -->
 	     <div class="modal fade " id="search-key" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	        <div class="modal-dialog ">
@@ -889,7 +893,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Search Key</strong></h4>
 	                </div>
 	                <div class="modal-body search-key-conf-body">
-	                	
+
 	                	<div class="panel panel-default search-key-panel">
 						  <div class="panel-heading">
 						    <h4 class="panel-title"><span>Key1</span><span type="button" class="glyphicon glyphicon-plus search-key-add" style="float:right"></span></h4>
@@ -902,7 +906,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							      </div>
 							      <div class="col-lg-6 col-md-6">
 							      	<input type="text" class="form-control search-profile-id">
-							      </div>							      
+							      </div>
 							    </div>
 							    <div class="row">
 							      <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text">
@@ -920,9 +924,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <input type="radio" class="From-file-search" name="type" value="" />From File&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                             </div>
-							      </div>							      
+							      </div>
 							    </div>
-							    
+
 							    <div class="row file-fixed" style="display:none">
                                         <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 title-text2">
                                             <strong>Address:</strong>
@@ -930,41 +934,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <div class="col-lg-6 col-md-6" style="padding:10px 0 0 0">
                                             <input type="text" class="form-control search-fixed">
                                         </div>
-                                    </div>							   
+                                    </div>
 						    </form>
 						  </div>
-						</div>                   	
-	                	               
+						</div>
+
 	                </div>
 	                <div class="modal-footer">
-	                    <button type="button" class="btn btn-primary" id ="search-submit" data-dismiss="modal">submit</button>	                    
+	                    <button type="button" class="btn btn-primary" id ="search-submit" data-dismiss="modal">submit</button>
 	                </div>
 	            </div><!-- /.modal-content -->
 	        </div><!-- /.modal -->
-	    </div> 
-	    
-	    
-        
-    </div>
-    
+	    </div>
 
-    
-    
-    
-    
+
+
+    </div>
+
+
+
+
+
+
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <script src="js/jquery-3.2.1.min.js"></script>
    <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="js/bootstrap.min.js"></script>
    <script src="js/fileinput.min.js"></script>
-   <script type="text/javascript">  	
+   <script type="text/javascript">
    		//used for checkbox
 		function changeState(el) {
 	        if (el.readOnly) el.checked=el.readOnly=false;
 	        else if (!el.checked) el.readOnly=el.indeterminate=true;
 	    }
-	    
-	    
+
+
 	    $(function(){
 	    	$("#mode-select ul>li").click(function(event){
 	  			//alert($(this).find('a').html());
@@ -985,8 +989,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			en_ad = $("#checkbox-ad").get(0).checked;
 	  			en_acl = $("#checkbox-acl").get(0).checked;
 	  			en_lpm = $("#checkbox-lpm").get(0).checked;
-	  			//console.log(en_ad,en_acl,en_lpm);  			
-	  			
+	  			//console.log(en_ad,en_acl,en_lpm);
+
 	  			if($("#mode-select>input").val()==""){
 	  				alert("please select one mode!");
 	  			}else if(en_ad){
@@ -999,14 +1003,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			}else if(en_acl){
 	  				$("#mode-config").modal('hide');
 	  				$("#acl-config").modal();
-	  			
+
 	  			}else if(en_lpm){
 	  				$("#mode-config").modal('hide');
-	  				$("#lpm-config").modal();	  			
+	  				$("#lpm-config").modal();
 	  			}else{
-	  				alert("please at least select one of ACL and LPM!");	  			
+	  				alert("please at least select one of ACL and LPM!");
 	  			}
-	  			
+
 	  			$.ajax({
 	  				type:"post",
 	  				url:"servlet/ModeServlet",
@@ -1014,7 +1018,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  					nseMode: $("#nseMode").val(),
 	  					enAd:  $("#checkbox-ad").prop("checked"),
 	  					enAcl: $("#checkbox-acl").prop("checked"),
-	  					enLpm: $("#checkbox-lpm").prop("checked")	  					
+	  					enLpm: $("#checkbox-lpm").prop("checked")
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1027,20 +1031,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  				  		
+
+	  			});
 	  		});
-	  		
-	  		
-	  		
+
+
+
 	  		var ad_table_num = 1;
 	  		$(".ad-table-add").click(function(){
 	  			$(".ad-table-panel").first().clone(true).appendTo(".ad-table-conf-body");
-	  			$(".ad-table-panel").last().find('h4').find('span').first().html("AD "+(++ad_table_num));	  		
+	  			$(".ad-table-panel").last().find('h4').find('span').first().html("AD "+(++ad_table_num));
 	  		});
-	  		
-	  		
-	  		$("#ad-next").click(function(event){
+
+			$("#ad-last").click(function(event){
+						$("#ad-config").modal('hide');
+						$("#mode-config").modal();
+			});
+
+			$("#ad-next").click(function(event){
 	  			if(en_acl){
 	  				$("#acl-next").html('Finish');
 	  				$("#ad-config").modal('hide');
@@ -1050,13 +1058,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				}else{
 	  					$("#acl-next").html('Submit');
 	  					$("#acl-config").modal();
-	  				}		
-	  				
+	  				}
+
 	  			}else if(en_lpm){
 	  				$("#ad-config").modal('hide');
-	  				$("#lpm-config").modal();	  			
-	  			}	
-	  			
+	  				$("#lpm-config").modal();
+	  			}
+
+
 	  			var adJsonArr = new Array();
 	  			var adIndex = $('.ad-name').length;
 	            var $adTable = $('.table-ad').first();
@@ -1076,14 +1085,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+'<td>'+temp.width+'</td>';
 								+'</tr>';
 					$(addTr).appendTo($adTable.find('tbody'));
-	  			}  			
+	  			}
 	  			var adJsonStr = JSON.stringify(adJsonArr);
-	  			
+
 	  			$.ajax({
 	  				type:"post",
 	  				url:"servlet/AdServlet",
 	  				data:{
-	  					adJsonStr : adJsonStr	  					
+	  					adJsonStr : adJsonStr
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1099,31 +1108,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  			
-	  			
-	  					
-	  				
+
+	  			});
+
+
+
 	  		});
-	  		
-	  		
-	  		
+
+
+
 	  		var acl_table_num = 1;
 	  		$(".acl-table-add").click(function(){
 	  			$(".acl-table-panel").first().clone(true).appendTo(".acl-table-conf-body");
-	  			$(".acl-table-panel").last().find('h4').find('span').first().html("ACL Table"+(++acl_table_num));		  		
+	  			$(".acl-table-panel").last().find('h4').find('span').first().html("ACL Table"+(++acl_table_num));
 	  		});
-	  		
+	        $("#acl-last").click(function(event){
+				if(en_ad)
+				{
+					$("#acl-config").modal('hide');
+					$("#ad-config").modal();
+				}else{
+				$("#acl-config").modal('hide');
+				$("#mode-config").modal();}
+				});
 	  		$("#acl-next").click(function(){
 	  			if(en_lpm){
 	  				$("#acl-config").modal('hide');
-	  				$("#lpm-config").modal();	  
+	  				$("#lpm-config").modal();
 	  			}else{
 	  				$("#acl-config").modal('hide');
 	  				//alert("Finish config Table");
 	  			}
-	  				
-	  			
+
+
 	  			var aclJsonArr = new Array();
 	  			var aclIndex = $('.acl-name').length;
 	            var $aclTable = $('.table-acl').first();
@@ -1143,14 +1160,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								+'<td>'+temp.adBlock+'</td>';
 								+'</tr>';
 					$(addTr).appendTo($aclTable.find('tbody'));
-	  			}  			
+	  			}
 	  			var aclJsonStr = JSON.stringify(aclJsonArr);
-	  			
+
 	  			$.ajax({
 	  				type:"post",
 	  				url:"servlet/AclServlet",
 	  				data:{
-	  					aclJsonStr : aclJsonStr	  					
+	  					aclJsonStr : aclJsonStr
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1166,23 +1183,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  			
-	  			
-	  			
-	  			
-	  			  		
+
+	  			});
+
+
+
+
 	  		});
-	  		
-	  		
-	  		
+
+
+
 	  		var lpm_table_num = 1;
 	  		$(".lpm-table-add").click(function(){
 	  			$(".lpm-table-panel").first().clone(true).appendTo(".lpm-table-conf-body");
-	  			$(".lpm-table-panel").last().find('h4').find('span').first().html("LPM Table"+(++lpm_table_num));		  		
+	  			$(".lpm-table-panel").last().find('h4').find('span').first().html("LPM Table"+(++lpm_table_num));
 	  		});
-	  		
-	  		
+
+ 			$("#lpm-last").click(function(event){
+ 				$("#lpm-config").modal('hide');
+				if(en_acl)
+				{
+					
+					$("#acl-config").modal();
+				}else if(en_ad)
+				{
+					$("#ad-config").modal();
+				}else
+				{
+					$("#mode-config").modal();
+				}
+			});
 	  		$("#lpm-next").click(function(){
   				$("#lpm-config").modal('hide');
   				//alert("Finish config Table");
@@ -1205,14 +1235,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					+'<td>'+temp.type+'</td>'
 					+'</tr>';
 					$(addTr).appendTo($lpmTable.find('tbody'));
-	  			}  			
+	  			}
 	  			var lpmJsonStr = JSON.stringify(lpmJsonArr);
-	  			
+
 	  			$.ajax({
 	  				type:"post",
 	  				url:"servlet/LpmServlet",
 	  				data:{
-	  					lpmJsonStr : lpmJsonStr	  					
+	  					lpmJsonStr : lpmJsonStr
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1228,45 +1258,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  				  				  		
-	  		});	 
-	  		
-	  		
+
+	  			});
+	  		});
+
+
 	  		var profile_num = 1;
 	  		$(".profile-add").click(function(){
-	  			$(".add-config-profile").last().clone(true).appendTo(".profile-conf-body");	
-	  			$(".profile-conf-body").find(".add-config-profile").last().attr("style","display:block");  
-	  			$(".profile-conf-body").find(".add-config-profile").last().find('h4').find('span').first().html("Profile"+(++profile_num));			
+	  			$(".add-config-profile").last().clone(true).appendTo(".profile-conf-body");
+	  			$(".profile-conf-body").find(".add-config-profile").last().attr("style","display:block");
+	  			$(".profile-conf-body").find(".add-config-profile").last().find('h4').find('span').first().html("Profile"+(++profile_num));
 	  		});
-	  		
-	  		
+
+
 	  		$(".detail-profile-add").click(function(event){
 	  			if($(this).hasClass("glyphicon-chevron-down")){
 	  				$(this).removeClass("glyphicon-chevron-down");
 		  			$(this).addClass("glyphicon-chevron-up");
-		  			var profile_table_num = $(this).parent().parent().find('input').val();			  			
+		  			var profile_table_num = $(this).parent().parent().find('input').val();
 		  			if($(this).parents(".profile-config-body").find(".add-config-profile-table").length != profile_table_num){
 		  				$(this).parents(".profile-config-body").find(".add-config-profile-table").remove();
 		  				for(var i = 0; i < profile_table_num; i++){
 			  				$(".add-config-profile-table").last().clone(true).appendTo($(this).parents(".profile-config-body"));
-			  				$(this).parents(".profile-config-body").find(".add-config-profile-table").last().attr("style","display:block");  
-			  				$(this).parents(".profile-config-body").find(".add-config-profile-table").last().find('h6').find('span').first().html("Configure table"+(i+1));	
-		  				}		  			
+			  				$(this).parents(".profile-config-body").find(".add-config-profile-table").last().attr("style","display:block");
+			  				$(this).parents(".profile-config-body").find(".add-config-profile-table").last().find('h6').find('span').first().html("Configure table"+(i+1));
+		  				}
 		  			}else{
-		  				$(this).parents(".profile-config-body").find(".add-config-profile-table").attr("style","display:block");	  		  			
+		  				$(this).parents(".profile-config-body").find(".add-config-profile-table").attr("style","display:block");
 		  			}
-		  			
-	  			
+
+
 	  			}else if($(this).hasClass("glyphicon-chevron-up")){
 	  				$(this).removeClass("glyphicon-chevron-up");
 		  			$(this).addClass("glyphicon-chevron-down");
-	  				$(this).parents(".profile-config-body").find(".add-config-profile-table").attr("style","display:none");	  			
+	  				$(this).parents(".profile-config-body").find(".add-config-profile-table").attr("style","display:none");
 	  			}
-	  			
+
 	  		});
-	  		
-	  		
+
+
 	  		$("#profile-submit").click(function(){
 	  			var profileJsonArr = new Array();
 	  			var profileIndex = $('.profile-tb-num').length;
@@ -1319,16 +1349,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	  				tmpProfile.tbnum = $('.profile-tb-num').eq(i).val();
 	  				tmpProfile.config = profileCfgJsonArr;
-	  				profileJsonArr.push(tmpProfile);  				
-	  				
-	  			}  			
+	  				profileJsonArr.push(tmpProfile);
+
+	  			}
 	  			var pfJsonStr = JSON.stringify(profileJsonArr);
 	  			//console.log(pfJsonStr);
 	  			$.ajax({
 	  				type:"post",
 	  				url:"servlet/ProfileServlet",
 	  				data:{
-	  					pfJsonStr : pfJsonStr	  					
+	  					pfJsonStr : pfJsonStr
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1344,43 +1374,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  				  	
-	  		
-	  		
+
+	  			});
+
+
 	  		});
-	  		
-	  		
-	  		
+
+
+
 	  		$(".add-inc-rule").click(function(){
-	  			$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none"); 
-	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none"); 
+	  			$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none");
+	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");
 	  		});
-	  		
-	  		
+
+
 	  		$(".add-random-aclrule").click(function(){
-	  			$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none"); 
-	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:block");  		
+	  			$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none");
+	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:block");
 	  		});
-	  		
+
 	  		$(".add-random-Lpmrule").click(function(){
                     $(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:none");
                     $(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");
                 });
-                
+
 			$(".add-rule-from-file").click(function(){
-				$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:block"); 
-	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");  			
+				$(this).parents('.row').nextAll().filter('.file-upload').attr("style","display:block");
+	  			$(this).parents('.row').nextAll().filter('.file-form').attr("style","display:none");
 			});
-	  		
-	  		
+
+
 	  		var rule_num = 1;
 	  		$(".rule-add").click(function(){
 	  			$(".rule-panel").first().clone(true).appendTo(".add-rules-conf-body");
-	  			$(".rule-panel").last().find('h4').find('span').first().html("Rule"+(++rule_num));	
+	  			$(".rule-panel").last().find('h4').find('span').first().html("Rule"+(++rule_num));
 	  			$(".add-inc-rule").last().trigger('click');
 	  		});
-	  		
+
 	  		var inc = false;
             var rndlpm = false;
             var rndacl = false;
@@ -1445,20 +1475,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
             });
-            
+
 	  		$(".Auto-search").click(function(){
                 $(this).parents('.row').nextAll().filter('.file-fixed').attr("style","display:none");
             });
             $(".From-file-search").click(function(){
                 $(this).parents('.row').nextAll().filter('.file-fixed').attr("style","display:block");
             });
-	  		
+
 	  		var search_key_num = 1;
 	  		$(".search-key-add").click(function(){
 	  			$(".search-key-panel").first().clone(true).appendTo(".search-key-conf-body");
-	  			$(".search-key-panel").last().find('h4').find('span').first().html("Key"+(++search_key_num));	  		
-	  		});	
-	  		
+	  			$(".search-key-panel").last().find('h4').find('span').first().html("Key"+(++search_key_num));
+	  		});
+
 	  		var auto = false;
             var from_file = false;
             $("#search-submit").click(function(){
@@ -1512,16 +1542,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		 var $node = $('.gen').parent('.modal-body');
 		                    $node.empty();
 		                    $('<div style="text-align:center" class="loading-pg"><img  src="pg/loading.gif"> </div>').appendTo($node); })
-	  		
-	  		
-	  		
+
+
+
 	  		$('#gen-app').on('shown.bs.modal', function (e) {
-	  			
+
 			    $.ajax({
 	  				type:"post",
 	  				url:"servlet/GenAppServlet",
 	  				data:{
-	  					 	  					
+
 	  				},
 	  				dataType:"json",
 	  				success:function(data) {
@@ -1533,10 +1563,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    var fileName = data.filename;
 		                    var rulename = data.rulename;
 							console.log(rulename);
-							
+
 							var keyname = data.keyname;
 							console.log(keyname);
-							
+
 		                    var filePath = "NseApplication/"+fileName+".c";
 		                    var app = "<a href=\"" + filePath +"\" " + "download=\"" + fileName + ".c\">" + fileName +"</a>";
 		                    var filePath = "RuleCollections/"+rulename+".txt";
@@ -1545,8 +1575,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             var key =  "<a href=\"" + filePath +"\" " + "download=\"" + keyname + ".txt\">" + keyname +"</a>";
                             //console.log(content);
 		                    $('<table  align="center" class = "gen " border="1">' +'please click the file to download <tr> <th>app</th> <th>rule</th><th>key</th></tr>'+
-    							'<tr><td>'+app+'</td><td>'+rule+'</td><td>'+key+'</td></tr></table>').appendTo($node);		                    
-		                    
+    							'<tr><td>'+app+'</td><td>'+rule+'</td><td>'+key+'</td></tr></table>').appendTo($node);
+
 		                 } else {
 		                     alert(data.msg);//打印相应的错误信息
 		                 }
@@ -1554,19 +1584,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            error:function(msg) {
 		                 console.log("error");
 		           }
-	  			
-	  			});  				
-			});  		 		
-	  		
-	  		    
+
+	  			});
+			});
+
+
 	    });
-	    
-	    
-	    
-	    
-	    
-	  	
-   
+
+
+
+
+
+
+
    </script>
   </body>
 </html>
