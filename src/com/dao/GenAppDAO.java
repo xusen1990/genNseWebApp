@@ -414,6 +414,7 @@ public class GenAppDAO {
 		    int seed = mi+h*100+d*1000+m*10000;
 		    final Process process;
 		    name = genFileName+"_"+name;
+		   
         	//System.out.println(config);
         	if(type.equals("Random"))
     		{	
@@ -435,23 +436,8 @@ public class GenAppDAO {
     		}
     		else if(type.equals("Fixed"))
     		{
-    			FileUtil.createFile(name,url);
-    			String fileNameTemp = config;
-    			try{
-    				BufferedReader br = new BufferedReader(new FileReader(fileNameTemp));//构造一个BufferedReader类来读取文件
-    				String s = null;
-    				for(int j = 0 ; j < 1024  ; j++)
-        			{	
-        				if((s = br.readLine()) != null)
-        				{	
-        					s =s +"\n";
-        					FileUtil.appendContent(name, s,url);	
-        				}
-        			}
-    				br.close();
-        	    }catch(Exception e){
-        	            	 e.printStackTrace();
-        	      }
+    			
+    			return ;
     		}
     		else if(type.equals("INC"))
     		{
@@ -542,21 +528,7 @@ public class GenAppDAO {
     		}			  
     		else if(i_type.equals("Fixed"))
     		{
-    			FileUtil.createFile(name,url);
-    			String fileNameTemp = config;
-        		try{
-        			BufferedReader br = new BufferedReader(new FileReader(fileNameTemp));//构造一个BufferedReader类来读取文件
-        			String s = null;
-        				
-            		while((s = br.readLine()) != null)
-            		{	
-            			s =s +"\n";
-            			FileUtil.appendContent(name, s,url);	
-            		}
-            		
-        			br.close();
-            	 }catch(Exception e){
-            	    e.printStackTrace();}	
+    			return ;
     		}
     		else if(i_type.equals("INC"))
     		{
@@ -672,8 +644,27 @@ public class GenAppDAO {
         			}
         			flag = 0;	
         		}
-        }	    
-	    public static void genrule(String genFileName, List<Acl> aclList, List<Lpm> lpmList , String url)
+        }	 
+	    public static String gettype(String Tname , List<Rule> ruleList)
+	    {
+	    	
+	    	if(ruleList == null)
+	    		return "no";
+	    	for(int i = 0; i < ruleList.size(); i++)
+	    	{
+	    		Rule a = ruleList.get(i);
+	    		if(a.getName().equals(Tname))
+	    		{
+	    		   if(a.getType().equals("Fixed"))
+	    			   return a.getConfig() ;
+	    		   else
+	    			   return "no";
+	    		}
+	    		
+	    	}
+	    	return "no";
+	    }
+	    public static void genrule(String genFileName, List<Acl> aclList, List<Lpm> lpmList ,List<Rule> ruleList, String url)
 	       {
 	    	    String rule = genFileName+"_rule";
 	     	    String path1 = url + "RuleCollections"+System.getProperty("file.separator");
@@ -682,26 +673,32 @@ public class GenAppDAO {
 				int flag = 0;
 				if(lpmList != null)
 				{	
-				for(int t = 0 ; t < lpmList.size(); t++)
-	    		{
-	    			String fileNameTemp1 = genFileName +"_"+lpmList.get(t).getName();
-	    			if(flag == 0)	
-	    				source += fileNameTemp1;
-	    			else
-	    				source += "," + fileNameTemp1;
-	    			flag++;
+					for(int t = 0 ; t < lpmList.size(); t++)
+					{
+						if( gettype(lpmList.get(t).getName(),ruleList).equals("no"))
+						{	   
+							String fileNameTemp1 = genFileName +"_"+lpmList.get(t).getName();
+							if(flag == 0)	
+								source += fileNameTemp1;
+							else
+								source += "," + fileNameTemp1;
+							flag++;
+						}
 					}
 				}
 				if(aclList != null)
 				{
-				for(int t = 0 ; t < aclList.size(); t++)
-				{
-	    			String fileNameTemp1 = genFileName +"_"+aclList.get(t).getName();
-	    			if(flag == 0)	
-	    				source += fileNameTemp1;
-	    			else
-	    				source += "," + fileNameTemp1;
-	    			flag++;
+					for(int t = 0 ; t < aclList.size(); t++)
+					{
+						if( gettype(aclList.get(t).getName(),ruleList).equals("no"))
+						{
+							String fileNameTemp1 = genFileName +"_"+aclList.get(t).getName();
+							if(flag == 0)	
+								source += fileNameTemp1;
+							else
+								source += "," + fileNameTemp1;
+							flag++;
+						}
 					}
 				}
 				
@@ -719,7 +716,7 @@ public class GenAppDAO {
     			}
 	        
 	       }	    
-	    public static void addrule(String genFileName, Mode mode, List<Ad> adList, List<Acl> aclList, List<Lpm> lpmList, List<Profile> profList,String url,List<Integer> ADflag)
+	    public static void addrule(String genFileName, Mode mode, List<Ad> adList, List<Acl> aclList, List<Lpm> lpmList, List<Profile> profList,List<Rule> ruleList,String url,List<Integer> ADflag)
 	       {
 	    	String content ="\r\n"
 	    				   + "\tfile = \""+genFileName+"_"+"rule.txt\";"+"\r\n"
@@ -747,7 +744,12 @@ public class GenAppDAO {
 	    				continue;
 	    			portId = 0;   //Here need to modify next step    					
 	    			width = Integer.parseInt(aclList.get(i).getWidth());
-	    			String path3 = genFileName+"_"+name+".txt";
+	    			String path3 = gettype(name,ruleList);
+	    			if(path3.equals("no"))
+	    			{	
+	    				path3 = genFileName+"_"+name+".txt";
+	    			}
+
 	    			
 	    			ADname = aclList.get(i).getAdBlock();
 	    			
@@ -842,8 +844,12 @@ public class GenAppDAO {
 	    			portId = 0;   //Here need to modify next step
 	    			width = Integer.parseInt(lpmList.get(i).getWidth());
 	    			
-	    			String path3 = genFileName+"_"+name+".txt";
-	    			System.out.println("111");
+	    			String path3 = gettype(name,ruleList);
+	    			if(path3.equals("no"))
+	    			{	
+	    				path3 = genFileName+"_"+name+".txt";
+	    			}
+	    			
 	    			content +="\r\n"
 	   					    + "\tfp = fopen(\""+path3+"\", \"r\");"+ "\r\n"
 	   					    + "\tMyLpmTable = NseManagerDp_LpmTable_Get(MyStargate, " + portId + ", "+lpmList.get(i).getType()+");" + "\r\n"
@@ -884,8 +890,9 @@ public class GenAppDAO {
 	    	
 	    
 	    
-	   } 
-	    public static void gensearch(String genFileName,Mode mode,List<Ad> adList, List<Acl> aclList, List<Lpm> lpmList, List<Profile> profList,List<Key> keyList, String url) throws IOException
+	   }
+	    
+	    public static void gensearch(String genFileName,Mode mode,List<Ad> adList, List<Acl> aclList, List<Lpm> lpmList, List<Profile> profList,List<Key> keyList, String url)
         {
         	
         	String path1 = url + "KeyCollections"+System.getProperty("file.separator");
