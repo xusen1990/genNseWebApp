@@ -394,7 +394,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <h4 class="modal-title"><strong>Help</strong></h4>
 	                </div>
 	                <div class="modal-body">
-	                	If you have any question, please contact with <a href="mailto:xusen.li@corigine.com?subject=QA: Auto-gen System">Xusen</a>.
+	                	If you have any question, please contact with <a href="mailto:xusen.li@corigine.com?subject=QA: Auto-gen System">Xusen</a> or <a href="mailto:peng.zhang@corigine.com?subject=QA: Auto-gen System">Peng</a> .
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
@@ -456,7 +456,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<div class="panel panel-default ad-table-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>AD 1</span><span type="button" class="glyphicon glyphicon-plus ad-table-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>AD 1</span><span type="button" class="glyphicon glyphicon-plus ad-table-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus ad-table-minus" style="float:right;display:none"></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -519,7 +519,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	                	<div class="panel panel-default acl-table-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>ACL Table1</span><span type="button" class="glyphicon glyphicon-plus acl-table-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>ACL Table1</span><span type="button" class="glyphicon glyphicon-plus acl-table-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus acl-table-minus" style="float:right;display:none"></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -585,7 +585,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	                	<div class="panel panel-default lpm-table-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>LPM Table1</span><span type="button" class="glyphicon glyphicon-plus lpm-table-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>LPM Table1</span><span type="button" class="glyphicon glyphicon-plus lpm-table-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus lpm-table-minus" style="float:right;display:none"></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -695,7 +695,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="add-config-profile" style="display:none">
 	    	<div class="panel panel-default profile-panel">
 			  <div class="panel-heading">
-			    <h4 class="panel-title"><span>Profile1</span><span type="button" class="glyphicon glyphicon-plus profile-add" style="float:right"></span></h4>
+			    <h4 class="panel-title"><span>Profile1</span><span type="button" class="glyphicon glyphicon-plus profile-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus profile-minus" style="float:right;display:none"></span></h4>
 			  </div>
 			  <div class="panel-body profile-config-body" >
 			  	<form role="form">
@@ -776,7 +776,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <div class="modal-body add-rules-conf-body">
 	                	<div class="panel panel-default rule-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>Rule1</span><span type="button" class="glyphicon glyphicon-plus rule-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>Rule1</span><span type="button" class="glyphicon glyphicon-plus rule-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus rule-minus" style="float:right;display:none"></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -896,7 +896,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	                	<div class="panel panel-default search-key-panel">
 						  <div class="panel-heading">
-						    <h4 class="panel-title"><span>Key1</span><span type="button" class="glyphicon glyphicon-plus search-key-add" style="float:right"></span></h4>
+						    <h4 class="panel-title"><span>Key1</span><span type="button" class="glyphicon glyphicon-plus search-key-add" style="float:right;padding-left:10px"></span><span type="button" class="glyphicon glyphicon-minus search-key-minus" style="float:right; display:none" ></span></h4>
 						  </div>
 						  <div class="panel-body" >
 						  	<form role="form">
@@ -1041,7 +1041,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$(".ad-table-add").click(function(){
 	  			$(".ad-table-panel").first().clone(true).appendTo(".ad-table-conf-body");
 	  			$(".ad-table-panel").last().find('h4').find('span').first().html("AD "+(++ad_table_num));
-	  		});
+				$(".ad-table-panel").last().find('.ad-table-minus').css({ "display": "inline" });
+
+			});
+			$(".ad-table-minus").click(function(){
+				$(this).parents('.ad-table-panel').remove();
+			});
+
 
 			$("#ad-last").click(function(event){
 						$("#ad-config").modal('hide');
@@ -1121,8 +1127,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$(".acl-table-add").click(function(){
 	  			$(".acl-table-panel").first().clone(true).appendTo(".acl-table-conf-body");
 	  			$(".acl-table-panel").last().find('h4').find('span').first().html("ACL Table"+(++acl_table_num));
-	  		});
-	        $("#acl-last").click(function(event){
+				$(".acl-table-panel").last().find('.acl-table-minus').css({ "display": "inline" });
+
+			});
+			$(".acl-table-minus").click(function(){
+				$(this).parents('.acl-table-panel').remove();
+			});
+
+	$("#acl-last").click(function(event){
 				if(en_ad)
 				{
 					$("#acl-config").modal('hide');
@@ -1197,9 +1209,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$(".lpm-table-add").click(function(){
 	  			$(".lpm-table-panel").first().clone(true).appendTo(".lpm-table-conf-body");
 	  			$(".lpm-table-panel").last().find('h4').find('span').first().html("LPM Table"+(++lpm_table_num));
-	  		});
+				$(".lpm-table-panel").last().find('.lpm-table-minus').css({ "display": "inline" });
 
- 			$("#lpm-last").click(function(event){
+			});
+			$(".lpm-table-minus").click(function(){
+				$(this).parents('.lpm-table-panel').remove();
+			});
+
+
+	$("#lpm-last").click(function(event){
  				$("#lpm-config").modal('hide');
 				if(en_acl)
 				{
@@ -1268,7 +1286,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			$(".add-config-profile").last().clone(true).appendTo(".profile-conf-body");
 	  			$(".profile-conf-body").find(".add-config-profile").last().attr("style","display:block");
 	  			$(".profile-conf-body").find(".add-config-profile").last().find('h4').find('span').first().html("Profile"+(++profile_num));
-	  		});
+				$(".profile-conf-body").last().find('.profile-minus').css({ "display": "inline" });
+			});
+			$(".profile-minus").click(function(){
+				$(this).parents('.add-config-profile').remove();
+			});
 
 
 	  		$(".detail-profile-add").click(function(event){
@@ -1408,9 +1430,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$(".rule-add").click(function(){
 	  			$(".rule-panel").first().clone(true).appendTo(".add-rules-conf-body");
 	  			$(".rule-panel").last().find('h4').find('span').first().html("Rule"+(++rule_num));
-	  			$(".add-inc-rule").last().trigger('click');
-	  		});
+				$(".rule-panel").last().find('.rule-minus').css({ "display": "inline" });
 
+			});
+			$(".rule-minus").click(function(){
+				$(this).parents('.rule-panel').remove();
+			});
 	  		var inc = false;
             var rndlpm = false;
             var rndacl = false;
@@ -1487,7 +1512,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$(".search-key-add").click(function(){
 	  			$(".search-key-panel").first().clone(true).appendTo(".search-key-conf-body");
 	  			$(".search-key-panel").last().find('h4').find('span').first().html("Key"+(++search_key_num));
+				$(".search-key-panel").last().find('.search-key-minus').css({ "display": "inline" });
+
 	  		});
+			$(".search-key-minus").click(function(){
+				$(this).parents('.search-key-panel').remove();
+			});
 
 	  		var auto = false;
             var from_file = false;
